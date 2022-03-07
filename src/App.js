@@ -1,11 +1,11 @@
 import Avatar from './components/Avatar/Avatar'
 
 function App() {
-  const params = {src: "https://randomuser.me/api/portraits/lego/6.jpg", id: 6}
+  const ids = [0,1,2,3,4,5,6]
   return (
     <div className="App">
       <header className="App-header">
-        <Avatar params={params}/>
+        {ids.map(id => <Avatar params={{id: id}} key={id}/>)}
       </header>
     </div>
   );
