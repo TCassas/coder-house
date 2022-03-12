@@ -5,7 +5,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        {ids.map(id => <Avatar params={{id: id}} key={id}/>)}
+        {ids.map(id => <Avatar id={id} key={id}/>)}
       </header>
     </div>
   );
