@@ -1,9 +1,9 @@
 import "./Main.css"
 
-const Main = ({ h1 }) => {
+const Main = ({ greeting }) => {
     return (
         <main>
-            <h1>{h1}</h1>
+            <h1>{greeting}</h1>
             <p>Website under development</p>
         </main>
     )

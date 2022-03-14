@@ -7,7 +7,7 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-      <Main h1="すみません" />
+      <Main greeting="すみません" />
       <Footer />
     </div>
   );
