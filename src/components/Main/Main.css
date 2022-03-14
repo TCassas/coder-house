@@ -1,0 +1,10 @@
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px;
+}
+
+main h1 {
+    color: #F03A17;
+}

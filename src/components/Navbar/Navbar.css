@@ -1,0 +1,20 @@
+nav {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 20px;
+    padding: 10px;
+    border-bottom: 1px solid rgb(223, 223, 223);
+}
+
+.navbar-left, .navbar-right  {
+    display: flex;
+    gap: 10px;
+}
+
+.navbar-left {
+    align-items: stretch;
+}
+
+.navbar-right {
+    justify-content: flex-end;
+}
