@@ -12,10 +12,14 @@
     padding: 10px;
     border-top-left-radius: 6px;
     border-bottom-left-radius: 6px;
+    caret-color: #F03A17;
+    border-left: 2px solid white;
+    transition: 0.1s;
 }
 
 .search-container input:focus {
-    outline: 4px dashed #FCE100;
+    outline: none;
+    border: 2px solid #F03A17;
 }
 
 .search-container button {
@@ -32,4 +36,13 @@
     background: hsl(0, 0%, 93%);
     cursor: pointer;
     font-size: 20px;
+}
+
+.search-container button > * {
+    height: 100%;
+    transition: 0.1s;
+}
+
+.search-container button > *:hover {
+    transform: rotate(90deg);
 }

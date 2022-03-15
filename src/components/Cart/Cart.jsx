@@ -6,7 +6,7 @@ const Cart = ({ cartContent }) => {
         <button className="cart-button">
             <span>
                 { cartContent?.length ? <HiShoppingCart /> : <HiOutlineShoppingCart /> }
-            </span> 0
+            </span> { cartContent?.length ? cartContent.length : 0 }
         </button>
     )
 }

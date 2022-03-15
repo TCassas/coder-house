@@ -1,6 +1,7 @@
 import Cart from "../Cart/Cart"
 import Navlink from "../Navlink/Navlink"
 import Search from "../Search/Search"
+import { HiMenu } from "react-icons/hi"
 import "./Navbar.css"
 
 const Navbar = () => {
@@ -16,7 +17,10 @@ const Navbar = () => {
                 <Navlink href="#" text="Login" />
                 <Navlink href="#" text="Register" />
                 <Cart cartContent={[]}/> {/*If there are items in the cart, the icon changes. Thought creating a cart element would open some future improvements*/}
-                {/* <Navlink href="#" text="🛒 0" sm={true} /> */}
+            </div>
+            <div className="mobile-menu-container">
+                
+                <HiMenu className="mobile-menu-icon"/>
             </div>
         </nav>
     )
