@@ -15,15 +15,21 @@
 }
 
 .search-container input:focus {
-    outline: none;
+    outline: 4px dashed #FCE100;
 }
 
 .search-container button {
+    display: flex;
     width: 30px;
-    align-self: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     border: none;
+    color: #F03A17;
     height: 100%;
     border-top-right-radius: 6px;
     border-bottom-right-radius: 6px;
+    background: hsl(0, 0%, 93%);
     cursor: pointer;
+    font-size: 20px;
 }

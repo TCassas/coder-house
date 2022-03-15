@@ -1,10 +1,13 @@
 import "./Search.css"
+import { HiSearch } from "react-icons/hi"
 
 const Search = () => {
     return (
         <div className="search-container">
             <input type="txt" placeholder="Honda prelude 1981" />
-            <button>🔎</button>
+            <button>
+                <HiSearch />
+            </button>
         </div>
     )
 }

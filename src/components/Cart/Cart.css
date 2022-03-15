@@ -1,0 +1,19 @@
+.cart-button {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.25);
+    background-color: #ffffff;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+}
+
+.cart-button span {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    font-size: 16px;
+    margin-right: 5px;
+    color: #F03A17;
+}

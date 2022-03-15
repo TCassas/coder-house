@@ -1,3 +1,4 @@
+import Cart from "../Cart/Cart"
 import Navlink from "../Navlink/Navlink"
 import Search from "../Search/Search"
 import "./Navbar.css"
@@ -14,7 +15,8 @@ const Navbar = () => {
                 <Navlink href="#" text="Sell" />
                 <Navlink href="#" text="Login" />
                 <Navlink href="#" text="Register" />
-                <Navlink href="#" text="🛒 0" sm={true} />
+                <Cart cartContent={[]}/> {/*If there are items in the cart, the icon changes. Thought creating a cart element would open some future improvements*/}
+                {/* <Navlink href="#" text="🛒 0" sm={true} /> */}
             </div>
         </nav>
     )
