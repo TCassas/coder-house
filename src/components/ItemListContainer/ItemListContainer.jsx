@@ -1,8 +1,8 @@
-import "./Main.css"
+import "./ItemListContainer.css"
 
 const Main = ({ greeting }) => {
     return (
-        <main>
+        <main className="itemListContainer">
             <h1>{greeting}</h1>
             <p>Website under development</p>
         </main>

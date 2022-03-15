@@ -1,8 +1,8 @@
 import Cart from "../Cart/Cart"
-import Navlink from "../Navlink/Navlink"
+import Navlink from "../NavLink/NavLink"
 import Search from "../Search/Search"
 import { HiMenu } from "react-icons/hi"
-import "./Navbar.css"
+import "./NavBar.css"
 
 const Navbar = () => {
     return (

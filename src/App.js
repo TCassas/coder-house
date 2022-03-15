@@ -1,13 +1,13 @@
-import Navbar from './components/Navbar/Navbar';
-import Main from './components/Main/Main.jsx'
+import NavBar from './components/NavBar/NavBar';
+import ItemListContainer from './components/ItemListContainer/ItemListContainer.jsx'
 import Footer from './components/Footer/Footer.jsx'
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <Navbar />
-      <Main greeting="すみません" />
+      <NavBar />
+      <ItemListContainer greeting="すみません" /> {/*Lo sentimos*/}
       <Footer />
     </div>
   );

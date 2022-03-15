@@ -1,4 +1,4 @@
-import "./Navlink.css"
+import "./NavLink.css"
 import { HiChevronDown } from "react-icons/hi";
 
 const Navlink = ({ href, text, categories, icon }) => {

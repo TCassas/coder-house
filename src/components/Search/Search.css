@@ -15,6 +15,7 @@
     caret-color: #F03A17;
     border: 2px solid white;
     transition: 0.1s;
+    font-size: 15px;
 }
 
 .search-container input:focus {
