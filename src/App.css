@@ -25,3 +25,8 @@ a {
   border-radius: 6px;
   transition: 0.1s;
 }
+
+.navlink:hover {
+  position: relative;
+  bottom: 5px;
+}

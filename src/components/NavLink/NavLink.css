@@ -5,8 +5,3 @@
     height: 100%;
     border-left: 1px solid rgb(223, 223, 223);
 }
-
-.navlink:hover {
-    position: relative;
-    bottom: 5px;
-}
