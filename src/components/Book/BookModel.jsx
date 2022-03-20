@@ -20,9 +20,9 @@ const BookModel = ({ pagesCount, cover }) => {
         //Prepare book cover texture
         cover = cover ? cover : "/imgs/akira-cover.jpeg"
         const paths = [
-            "/imgs/pages-texture.jpg", "/imgs/black-texture.jpg",
+            "/imgs/spine.png", "/imgs/pages-texture.png",
             "/imgs/black-texture.jpg", "/imgs/black-texture.jpg",
-            cover, "/imgs/black-texture.jpg"
+            cover, "/imgs/back-cover.png"
         ]
 
         const loader = new THREE.TextureLoader()
