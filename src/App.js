@@ -14,8 +14,6 @@ function App() {
       <BooksContainer>
         <strong> Book component showcase (different <span>sizes</span>) </strong>
         <Books>
-          <Book size={1} cover={"https://patchbae.github.io/images/AKIRA.jpg"} thickness={1} enableZoom={true} />
-          <Book size={2} cover={"https://static.wikia.nocookie.net/berserk/images/2/26/Manga_V1_Cover.png"} thickness={3} enableZoom={false} />
           <Book size={3} cover={"https://static.wikia.nocookie.net/manjipedia/images/6/6a/Volume_01.jpg"} thickness={2} enableZoom={true} />
         </Books>
       </BooksContainer>

@@ -32,9 +32,9 @@ const BookModel = ({ size, cover, thickness }) => {
         //Prepare manga cover texture
         cover = cover ? cover : "/imgs/akira-cover.jpeg"
         const paths = [
-            "/imgs/spine.png", "/imgs/pages-texture.png",
+            "/imgs/uzumaki-spine.png", "/imgs/pages-texture.png",
             "/imgs/black-texture.jpg", "/imgs/black-texture.jpg",
-            cover, "/imgs/back-cover.png"
+            "/imgs/uzumaki-cover.png", "/imgs/uzumaki-back.png"
         ]
 
         const loader = new THREE.TextureLoader()
