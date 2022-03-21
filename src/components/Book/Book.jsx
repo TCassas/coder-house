@@ -4,15 +4,15 @@ import { Canvas } from "@react-three/fiber";
 import BookModel from "./BookModel";
 import { OrbitControls } from "@react-three/drei";
 
-const Book = ({ pagesCount, cover }) => {
+const Book = ({ size, cover, thickness, enableZoom }) => {
     return (
         <Wrapper>
             <Canvas>
-            <OrbitControls maxPolarAngle={Math.PI/2} minPolarAngle={Math.PI/2} enableZoom={false} />
+            <OrbitControls maxPolarAngle={Math.PI/2} minPolarAngle={Math.PI/2} enableZoom={enableZoom} minDistance={1.7} maxDistance={4} />
                 <ambientLight intensity={0.5} />
                 <directionalLight position={[-2, 5, 2]} intensity={1} />
                 <Suspense fallback={null}>
-                    <BookModel pagesCount={600} cover={"https://patchbae.github.io/images/AKIRA.jpg"} />
+                    <BookModel size={size} cover={cover} thickness={thickness} />
                 </Suspense>
             </Canvas>
         </Wrapper> 
@@ -24,6 +24,7 @@ const Wrapper = styled.div`
 
     .canvas {
         height: 20px;
+        overflow: visible;
     }
 `;
 

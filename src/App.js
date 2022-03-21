@@ -11,7 +11,14 @@ function App() {
       <NavBar />
       <ItemListContainer greeting="すみません" /> {/*Lo sentimos*/}
 
-      <Book />
+      <BooksContainer>
+        <strong> Book component showcase (different <span>sizes</span>) </strong>
+        <Books>
+          <Book size={1} cover={"https://patchbae.github.io/images/AKIRA.jpg"} thickness={1} enableZoom={true} />
+          <Book size={2} cover={"https://static.wikia.nocookie.net/berserk/images/2/26/Manga_V1_Cover.png"} thickness={3} enableZoom={false} />
+          <Book size={3} cover={"https://static.wikia.nocookie.net/manjipedia/images/6/6a/Volume_01.jpg"} thickness={2} enableZoom={true} />
+        </Books>
+      </BooksContainer>
 
       <Footer />
     </div>
@@ -20,7 +27,20 @@ function App() {
 
 export default App;
 
-const Test = styled.div`
+const Books = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+`;
+
+const BooksContainer = styled.div`
+  display: grid;
+
+  strong {
+    font-size: 20px;
+    text-align: center;
+
+    span {
+      color: #F03A17;
+    }
+  }
 `;
