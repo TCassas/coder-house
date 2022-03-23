@@ -20,7 +20,7 @@ const Book = ({ size, cover, thickness, enableZoom }) => {
 }
 
 const Wrapper = styled.div`
-    height: 400px;
+    /* height: 400px; */
 
     .canvas {
         height: 20px;
