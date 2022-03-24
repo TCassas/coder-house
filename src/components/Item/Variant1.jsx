@@ -3,7 +3,7 @@ import styled from "styled-components"
 
 const Variant1 = ( { data } ) => {
     const { name, img, author, info, price, stock, initial } = data
-    const [count, setCount] = useState(initial)
+    const [count, setCount] = useState(initial ? initial : 0)
     
     const addToCart = () => {
         if(count + 1 <= stock) {
@@ -36,9 +36,11 @@ const Variant1 = ( { data } ) => {
             <ItemName>{name}</ItemName>
             <ItemInfo>
                 <p>{author}</p>
-                <p>{info}</p>
+                <div className='flex-between'>
+                    <p>{info}</p>
+                    <strong>${ price }</strong>
+                </div>
                 {/* categorias */}
-                <strong>${ price }</strong>
                 <CartCount>
                     <CartButton>Agregar al carrito</CartButton>                    
                     <CartControls>
@@ -64,7 +66,7 @@ const ItemContainer = styled.article`
     flex-direction: column;
     margin-top: 165px;
     width: 300px;
-    padding: 10px;
+    /* padding: 10px; */
     box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.25);
     border-radius: 6px;
     margin-bottom: 50px;
@@ -75,7 +77,7 @@ const ItemContainer = styled.article`
         box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.25);
 
         picture {
-            top: -80px;
+            top: -70px;
         }
     }
 `;
@@ -125,23 +127,20 @@ const ItemPhoto = styled.picture`
 `;
 
 const ItemName = styled.strong`
-    color: #F03A17;
+    color: white;
     font-weight: bold;
     margin-bottom: 5px;
+    background-color: #F03A17;
+    padding: 2px 10px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
 `;
 
 
 const ItemInfo = styled.div`
     display: flex;
     flex-direction: column;
-
-    strong {
-        /* text-align: right; */
-    }
-
-    div {
-        display: flex;
-    }
+    padding: 0 10px 10px 10px;
 
     button {
         background-color: #FCE100;

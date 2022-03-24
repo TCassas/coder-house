@@ -30,3 +30,8 @@ a {
   position: relative;
   bottom: 5px;
 }
+
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+}

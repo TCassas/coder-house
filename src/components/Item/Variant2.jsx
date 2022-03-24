@@ -2,8 +2,8 @@ import { useState } from 'react'
 import styled from 'styled-components'
 
 const Variant2 = ( { data } ) => {
-    const [count, setCount] = useState(0)
-    const { name, img, author, info, price, stock } = data
+    const { name, img, author, info, price, stock, initial } = data
+    const [count, setCount] = useState(initial ? initial : 0)
 
     const addToCart = () => {
         if(count + 1 <= stock) {
@@ -76,7 +76,7 @@ const ItemContainer = styled.article`
 
 const RightSide = styled.picture`
     background-image: url(${(props) => props.image}); //picante
-    background-size: cover;
+    background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
     border-top-right-radius: 6px;
@@ -126,5 +126,5 @@ const ItemName = styled.strong`
 const LeftSide = styled.div`
     display: flex;
     flex-direction: column;
-    padding: 20px;
+    padding: 10px;
 `;

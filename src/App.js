@@ -14,12 +14,12 @@ function App() {
 
       <div style={{display: "flex", flexDirection: "column"}}>
         <div style={{display: "flex", justifyContent: "space-around"}}>
-          <Item variant={1} initial={2} data={{name: "BLADE OF THE IMMORTAL", img: "./imgs/akira-cover.jpeg", author: "Katsuhiro Otomo", info: "Vol. 13 - 400 Pages", price: "720", stock: 4}}/>
-          {/* <Item variant={1} data={{name: "AKIRA", img: "./imgs/akira-cover.jpeg", author: "Katsuhiro Otomo", info: "Vol. 13 - 400 Pages", price: "720", stock: 4}}/> */}
+          <Item variant={1} data={{name: "AKIRA", img: "./imgs/akira-cover.jpeg", author: "Katsuhiro Otomo", info: "Vol. 13 - 400 Pages", price: "720", stock: 4, initial: 1}}/>
+          <Item variant={1} data={{name: "AKIRA", img: "./imgs/akira-cover.jpeg", author: "Katsuhiro Otomo", info: "Vol. 13 - 400 Pages", price: "720", stock: 4, initial: 2}}/>
         </div>
         <div style={{display: "flex", justifyContent: "space-around"}}>
-          {/* <Item variant={2} data={{name: "AKIRA", img: "./imgs/akira-cover.jpeg", author: "Katsuhiro Otomo", info: "Vol. 13 - 400 Pages", price: "720", stock: 4}}/>
-          <Item variant={2} data={{name: "AKIRA", img: "./imgs/akira-cover.jpeg", author: "Katsuhiro Otomo", info: "Vol. 13 - 400 Pages", price: "720", stock: 4}}/> */}
+          <Item variant={2} data={{name: "AKIRA", img: "./imgs/akira-cover.jpeg", author: "Katsuhiro Otomo", info: "Vol. 13 - 400 Pages", price: "720", stock: 4, initial: 3}}/>
+          <Item variant={2} data={{name: "AKIRA", img: "./imgs/akira-cover.jpeg", author: "Katsuhiro Otomo", info: "Vol. 13 - 400 Pages", price: "720", stock: 4, initial: 4}}/>
         </div>
       </div>
       {/* <BooksContainer>
