@@ -1,32 +1,8 @@
 import { useEffect, useState } from 'react'
 import styled from "styled-components"
 
-const Variant1 = ( { data } ) => {
-    const { name, img, author, info, price, stock, initial } = data
-    const [count, setCount] = useState(initial ? initial : 0)
-    
-    const addToCart = () => {
-        if(count + 1 <= stock) {
-            setCount(count + 1)
-        }
-    }
-
-    const removeFromCart = () => {
-        if(count - 1 >= 0) {
-            setCount(count - 1)
-        }
-    }
-
-    const editCart = (e) => {
-        const value = e.target.value
-        if(value && value > stock) {
-            setCount(parseInt(stock))
-        } else if(value < 0) {
-            setCount(0)
-        } else {
-            setCount(value)
-        }
-    }
+const Variant1 = ( { data, addToCart, addOne, removeOne, editCart, count } ) => {
+    const { name, img, author, info, price } = data
 
     return (
         <ItemContainer>
@@ -42,16 +18,16 @@ const Variant1 = ( { data } ) => {
                 </div>
                 {/* categorias */}
                 <CartCount>
-                    <CartButton>Agregar al carrito</CartButton>                    
+                    <CartButton onClick={() => addToCart()}>Agregar al carrito</CartButton>                    
                     <CartControls>
-                        <CartButton onClick={() => removeFromCart()}>-</CartButton>
+                        <CartButton onClick={() => removeOne()}>-</CartButton>
                         <input
                             value={ count }
                             type="number"
                             onChange={(e) => editCart(e)}
                             min={0}
                         />
-                        <CartButton onClick={() => addToCart()}>+</CartButton>
+                        <CartButton onClick={() => addOne()}>+</CartButton>
                     </CartControls>
                 </CartCount>
             </ItemInfo>
