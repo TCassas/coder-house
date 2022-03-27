@@ -1,17 +1,11 @@
-/**
- * This component will not be used, pending to delete
- */
-
 import styled from "styled-components"
 
-const Variant1 = ( { data } ) => {
+const Variant3 = ( { data } ) => {
     const { name, img, author, info, price } = data
 
     return (
         <ItemContainer>
-            <ItemPhoto>
-                <img src={`${img}`} alt={`${name}'s cover art`} />
-            </ItemPhoto>
+            <ItemPhoto image={img}/>
             <ItemName>{name}</ItemName>
             <ItemInfo>
                 <p>{author}</p>
@@ -19,80 +13,38 @@ const Variant1 = ( { data } ) => {
                     <p>{info}</p>
                     <strong>${ price }</strong>
                 </div>
+                {/* categorias */}
             </ItemInfo>
         </ItemContainer>
     )
 }
 
-export default Variant1
+export default Variant3
 
 const ItemContainer = styled.article`
     display: flex;
     flex-direction: column;
     margin: 0 auto;
-    margin-top: 125px;
-    width: 300px;
+    width: 200px;
     box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.25);
     border-radius: 6px;
-    margin-bottom: 50px;
-    transition: 1s;
+    transition: 0.5s;
     background-color: white;
     
     &:hover {
         box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.25);
-
-        picture {
-            top: -30px;
-        }
-    }
-`;
-
-const CartControls = styled.div`
-    display: flex;
-    gap: 5px;
-`;
-
-const CartButton = styled.button`
-    background-color: #FCE100;
-    color: white;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-    font-weight: bold;
-    border-radius: 2px;
-    border: none;
-    padding: 2px 7px;
-    cursor: pointer;
-`;
-
-const CartCount = styled.div`
-    display: flex;
-    justify-content: space-between;
-    margin-top: 5px;
-    gap: 2.25px;
-
-    input {
-        width: 78px;
-        text-align: center;
     }
 `;
 
 const ItemPhoto = styled.picture`
-    position: relative;
-    top: 0;
-    transition: 0.1s;
-    
-    img {
-        position: absolute;
-        z-index: -2;
-        top: -100px;
-        left: 86px;
-        width: 120px;
-        border-bottom: 1px dashed #F03A17;
-        transition: 1s;
-    }
-
-    &:hover {
-        top: -30px;
-    }
+    display: flex;
+    justify-content: center;
+    background-image: url(${(props) => props.image}); //picante
+    background-size: cover;
+    background-position: center;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    height: 190px;
 `;
 
 const ItemName = styled.strong`
@@ -101,8 +53,9 @@ const ItemName = styled.strong`
     margin-bottom: 5px;
     background-color: #F03A17;
     padding: 2px 10px;
-    border-top-left-radius: 6px;
-    border-top-right-radius: 6px;
+    overflow:hidden; 
+    white-space:nowrap; 
+    text-overflow: ellipsis;
 `;
 
 

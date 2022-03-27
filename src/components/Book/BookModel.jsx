@@ -51,7 +51,6 @@ const BookModel = ({ size, cover, thickness }) => {
             <boxBufferGeometry
                 attach="geometry"
                 args={[...mangaSize, mangaWidth]}
-                // args={[2.5, 4, mangaWidth]}
             />
             <meshStandardMaterial
                 attach="material"

@@ -4,7 +4,7 @@ import { HiSearch } from "react-icons/hi"
 const Search = () => {
     return (
         <div className="search-container">
-            <input type="txt" placeholder="Honda prelude 1981" />
+            <input type="txt" placeholder="Search mangas by name / author" />
             <button>
                 <HiSearch />
             </button>

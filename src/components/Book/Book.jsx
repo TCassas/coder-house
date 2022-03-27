@@ -8,8 +8,8 @@ const Book = ({ size, cover, thickness, enableZoom }) => {
     return (
         <Wrapper>
             <Canvas>
-            <OrbitControls maxPolarAngle={Math.PI/2} minPolarAngle={Math.PI/2} enableZoom={enableZoom} minDistance={1.7} maxDistance={4} />
-                <ambientLight intensity={0.5} />
+                <OrbitControls maxPolarAngle={Math.PI/2} minPolarAngle={Math.PI/2} enableZoom={enableZoom} minDistance={1.7} maxDistance={4} />
+                <ambientLight intensity={0.2} />
                 <directionalLight position={[-2, 5, 2]} intensity={1} />
                 <Suspense fallback={null}>
                     <BookModel size={size} cover={cover} thickness={thickness} />
@@ -20,7 +20,8 @@ const Book = ({ size, cover, thickness, enableZoom }) => {
 }
 
 const Wrapper = styled.div`
-    /* height: 400px; */
+    height: 400px;
+    cursor: grab;
 
     .canvas {
         height: 20px;
