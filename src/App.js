@@ -36,7 +36,7 @@ function App() {
               <Book size={2} cover={"https://static.wikia.nocookie.net/berserk/images/2/26/Manga_V1_Cover.png"} thickness={3} enableZoom={false} />
               <Book size={3} cover={"https://static.wikia.nocookie.net/manjipedia/images/6/6a/Volume_01.jpg"} thickness={2} enableZoom={false} />
             </Books>
-            <Note>I think I'll use them in the detail page (if it is not too complicate)</Note>
+            <Note>I think I'll use them in the detail page (if it is not too complicate). You can rotate them!</Note>
             <Note>Or maybe in a manga showcase to highlight some of them in the home page, not for every manga</Note>
           </BooksContainer>
         </>
