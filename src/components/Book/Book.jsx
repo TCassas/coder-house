@@ -5,6 +5,7 @@ import BookModel from "./BookModel";
 import { OrbitControls } from "@react-three/drei";
 
 const Book = ({ size, cover = "/imgs/akira-cover.jpeg", thickness, enableZoom }) => {
+    cover = cover ? cover : "/imgs/akira-cover.jpeg"
     return (
         <Wrapper>
             <Canvas>
