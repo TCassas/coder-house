@@ -1,6 +1,4 @@
-import { useLoader } from "@react-three/fiber"
 import { useEffect, useState } from "react"
-import { TextureLoader } from "three/src/loaders/TextureLoader"
 import * as THREE from 'three'
 
 const BookModel = ({ size, cover, thickness }) => {
@@ -17,6 +15,8 @@ const BookModel = ({ size, cover, thickness }) => {
                 break;
             case 3: setMangaWidth(0.9)
                 break;
+            default:
+                setMangaWidth(0.4)
         }
 
         //Set manga general size
@@ -27,6 +27,7 @@ const BookModel = ({ size, cover, thickness }) => {
                 break;
             case 3: setMangaSize([2.5, 4])
                 break;
+            default: setMangaSize([1.5, 2.4])
         }
         
         //Prepare manga cover texture
