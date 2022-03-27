@@ -30,7 +30,6 @@ const BookModel = ({ size, cover, thickness }) => {
         }
         
         //Prepare manga cover texture
-        cover = cover ? cover : "/imgs/akira-cover.jpeg"
         const paths = [
             "/imgs/spine.png", "/imgs/pages-texture.png",
             "/imgs/black-texture.jpg", "/imgs/black-texture.jpg",

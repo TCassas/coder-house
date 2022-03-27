@@ -4,7 +4,7 @@ import { Canvas } from "@react-three/fiber";
 import BookModel from "./BookModel";
 import { OrbitControls } from "@react-three/drei";
 
-const Book = ({ size, cover, thickness, enableZoom }) => {
+const Book = ({ size, cover = "/imgs/akira-cover.jpeg", thickness, enableZoom }) => {
     return (
         <Wrapper>
             <Canvas>
