@@ -4,39 +4,42 @@ import ItemCount from '../ItemCount/ItemCount'
 import { HiOutlineHeart, HiHeart } from 'react-icons/hi'
 import { useEffect, useState } from 'react'
 
-const ItemDetail = ()  => {
+const ItemDetail = ({ item })  => {
+    const {author, id, img, info, name, price, stock, description, audience, genres } = item
+    const onAdd = (quantity) => {
+        console.log(quantity)
+    }
+
     return (
         <ItemDetailContainer>
             <ItemDetailLeft>
                 <Book
                     size={3}
-                    cover={"https://static.wikia.nocookie.net/manjipedia/images/6/6a/Volume_01.jpg"}
+                    cover={img}
                     thickness={3}
                     enableZoom={false}
                 />
             </ItemDetailLeft>
             <ItemDetailRight>
-                <h1> UZUMAKI </h1>
+                <h1>{ name }</h1>
                 <ItemLike>
                     <HiOutlineHeart />
                 </ItemLike>
-                <strong><span>Author</span>: Junji Ito</strong>
-                <strong><span>Series</span>: Unique Volumen</strong>
+                <strong><span>Price</span>: ${ price }</strong>
+                <strong><span>Author</span>: { author }</strong>
+                <strong><span>Series</span>: { info }</strong>
                 <ItemDescription>
                     <strong><span>Description</span></strong>
-                    <p>Kurozu-cho, a small fogbound town on the coast of Japan, iscursed. According to Shuichi Saito, the withdrawn boyfriend of teenager Kirie Goshima, their town is haunted not by aperson or being but by a pattern: uzumaki, the spiral, thehypnotic secret shape of the world. It manifests itself insmall ways: seashells, ferns, whirlpools in water, whirlwindsin air. And in large ways: the spiral marks on people's bodies,the insane obsessions of Shuichi's father, the voice from thecochlea in your inner ear. As the madness spreads, theinhabitants of Kurouzu-cho are pulled ever deeper, as if into awhirlpool from which there is no return...</p>
+                    <p>{ description }</p>
                 </ItemDescription>
-                <strong><span>Audience</span>: +16</strong>
+                <strong><span>Audience</span>: { audience }</strong>
                 <strong><span>Genres</span></strong>
                 <ItemGenres>
-                    <ItemGenre>Horror</ItemGenre>
-                    <ItemGenre>Psychological</ItemGenre>
-                    <ItemGenre>Mistery</ItemGenre>
-                    <ItemGenre>Gore</ItemGenre>
+                    {genres.map(genre => <ItemGenre key={ genre }>{ genre }</ItemGenre>)}
                 </ItemGenres>
                 <ItemControls>
                     <ItemCounter>
-                        <ItemCount />
+                        <ItemCount stock={ stock } initial={ 0 } onAdd={ onAdd } />
                     </ItemCounter>
                 </ItemControls>
             </ItemDetailRight>
@@ -93,7 +96,7 @@ const ItemDetailRight = styled.section`
     }
 
     @media (max-width: 760px) {
-        border-radius: none;
+        border-radius: 0px;
     }
 `;
 

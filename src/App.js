@@ -1,5 +1,5 @@
 import { useState, useEffect} from 'react'
-import getProducts from './dataMock'
+import { getProducts } from './dataMock'
 import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer'
 import Loader from './components/Loader/Loader'
 import styled from 'styled-components'
@@ -11,39 +11,9 @@ import './App.css';
 import ItemDetail from './components/ItemDetail/ItemDetail'
 
 function App() {
-  const [items, setItems] = useState([])
-  // const [loading, setLoading] = useState(true)
-
-  // useEffect(() => {
-  //   getProducts().then((res) => {
-  //       setItems(res)
-  //   })
-  //   .finally(() => {
-  //       setLoading(!loading)
-  //   })
-  // }, [])
-
   return (
     <div className="App">
       <NavBar />
-      {/* {loading ?
-        <Loader />
-      :
-        <>
-          <ItemListContainer greeting="Welcome" variant={ 3 } items={ items } />
-          <BooksContainer>
-            <b> Book component showcase (different <span>sizes</span>) </b>
-            <Books>
-              <Book size={1} cover={""} thickness={1} enableZoom={false} />
-              <Book size={2} cover={"https://static.wikia.nocookie.net/berserk/images/2/26/Manga_V1_Cover.png"} thickness={3} enableZoom={false} />
-              <Book size={3} cover={"https://static.wikia.nocookie.net/manjipedia/images/6/6a/Volume_01.jpg"} thickness={2} enableZoom={false} />
-            </Books>
-            <Note>I think I'll use them in the detail page (if it is not too complicate). You can rotate them!</Note>
-            <Note>Or maybe in a manga showcase to highlight some of them in the home page, not for every manga</Note>
-          </BooksContainer>
-        </>
-      } */}
-
       <ItemDetailContainer />
 
       <Footer />
@@ -61,6 +31,7 @@ const Books = styled.div`
 const BooksContainer = styled.div`
   display: grid;
   margin-top: 10px;
+  height: 400px;
 
   b {
     font-size: 20px;

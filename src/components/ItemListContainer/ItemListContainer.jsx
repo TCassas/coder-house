@@ -12,7 +12,9 @@ const ItemListContainer = ({ greeting, variant, items }) => {
     return (
         <ItemsContainer className="itemListContainer">
             <h1 className='gap-bot'>{greeting}</h1>
-            <ItemCount stock={ 10 } initial={ 5 } onAdd={ onAdd } />
+            <div style={{margin: "0 auto 20px auto"}}>
+                <ItemCount stock={ 10 } initial={ 5 } onAdd={ onAdd } />
+            </div>
             <Items variant={variant}>
                 {items.map(item => <Item variant={variant} data={item} onAdd={onAdd} key={item.id} />)}
             </Items>
