@@ -1,5 +1,6 @@
 import { useState, useEffect} from 'react'
 import getProducts from './dataMock'
+import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer'
 import Loader from './components/Loader/Loader'
 import styled from 'styled-components'
 import NavBar from './components/NavBar/NavBar';
@@ -7,24 +8,25 @@ import ItemListContainer from './components/ItemListContainer/ItemListContainer.
 import Footer from './components/Footer/Footer.jsx'
 import Book from './components/Book/Book'
 import './App.css';
+import ItemDetail from './components/ItemDetail/ItemDetail'
 
 function App() {
   const [items, setItems] = useState([])
-  const [loading, setLoading] = useState(true)
+  // const [loading, setLoading] = useState(true)
 
-  useEffect(() => {
-    getProducts().then((res) => {
-        setItems(res)
-    })
-    .finally(() => {
-        setLoading(!loading)
-    })
-  }, [])
+  // useEffect(() => {
+  //   getProducts().then((res) => {
+  //       setItems(res)
+  //   })
+  //   .finally(() => {
+  //       setLoading(!loading)
+  //   })
+  // }, [])
 
   return (
     <div className="App">
       <NavBar />
-      {loading ?
+      {/* {loading ?
         <Loader />
       :
         <>
@@ -40,8 +42,10 @@ function App() {
             <Note>Or maybe in a manga showcase to highlight some of them in the home page, not for every manga</Note>
           </BooksContainer>
         </>
-      }
-      
+      } */}
+
+      <ItemDetailContainer />
+
       <Footer />
     </div>
   );

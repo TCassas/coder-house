@@ -27,6 +27,8 @@ const BookModel = ({ size, cover, thickness }) => {
                 break;
             case 3: setMangaSize([2.5, 4])
                 break;
+            case 4: setMangaSize([2.5, 4])
+                break;
             default: setMangaSize([1.5, 2.4])
         }
         
@@ -47,7 +49,7 @@ const BookModel = ({ size, cover, thickness }) => {
     }, [])
 
     return (
-        <mesh rotation={[0, 0.4, 0]} material={coverMap}>
+        <mesh rotation={[0, 0.4, 0]} material={coverMap} >
             <boxBufferGeometry
                 attach="geometry"
                 args={[...mangaSize, mangaWidth]}
