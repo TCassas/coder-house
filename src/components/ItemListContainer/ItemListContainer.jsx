@@ -1,9 +1,19 @@
+import { useState, useEffect } from 'react'
 import Item from '../Item/Item'
 import styled from 'styled-components'
 import ItemCount from '../ItemCount/ItemCount'
+import { getProducts } from '../../dataMock'
 import "./ItemListContainer.css"
 
-const ItemListContainer = ({ greeting, variant, items }) => {
+const ItemListContainer = ({ greeting, variant }) => {
+    const [items, setItems] = useState([])
+
+    useEffect(() => {
+        getProducts().then((res) => {
+            setItems(res);
+        })
+    }, [])
+
     //Add to cart function
     const onAdd = (quantity) => {
         console.log(quantity)
