@@ -70,7 +70,6 @@ const CartCount = styled.div`
     justify-content: space-between;
     margin-top: 5px;
     width: 200px;
-    margin: 0 auto 20px auto;
     gap: 2.25px;
 
     input {
