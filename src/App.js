@@ -1,51 +1,26 @@
-import { useState, useEffect} from 'react'
-import { getProducts } from './dataMock'
 import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer'
 import Loader from './components/Loader/Loader'
 import styled from 'styled-components'
 import NavBar from './components/NavBar/NavBar';
 import ItemListContainer from './components/ItemListContainer/ItemListContainer.jsx'
 import Footer from './components/Footer/Footer.jsx'
-import Book from './components/Book/Book'
 import './App.css';
-import ItemDetail from './components/ItemDetail/ItemDetail'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 function App() {
   return (
     <div className="App">
-      <NavBar />
-      <ItemDetailContainer />
-
-      <Footer />
+      <BrowserRouter>
+        <NavBar />
+        <Routes>
+          <Route path='/' element={<h1> Home </h1>} />
+          <Route path='/manga' element={<ItemListContainer variant={3} />}/>
+          <Route path='/manga/:id' element={<ItemDetailContainer  />} />
+        </Routes>
+        <Footer />
+      </BrowserRouter>
     </div>
   );
 }
 
 export default App;
-
-const Books = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
-`;
-
-const BooksContainer = styled.div`
-  display: grid;
-  margin-top: 10px;
-  height: 400px;
-
-  b {
-    font-size: 20px;
-    text-align: center;
-
-    span {
-      color: #F03A17;
-    }
-  }
-`;
-
-const Note = styled.p`
-  width: 100%;
-  color: gray;
-  text-align: center;
-  margin-bottom: 10px;
-`;
