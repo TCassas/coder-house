@@ -3,10 +3,7 @@ import { HiChevronDown, HiChevronUp } from "react-icons/hi";
 
 const Navlink = ({ href, text, categories, setShowDrop, showDrop }) => {
     return (
-        <a
-            href={`${href}`}
-            className="navlink"
-        >
+        <div className="navlink">
             {text}
             {categories?.length &&
                 <>
@@ -17,7 +14,7 @@ const Navlink = ({ href, text, categories, setShowDrop, showDrop }) => {
                     }
                 </>
             }
-        </a>
+        </div>
     )
 }
 

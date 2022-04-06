@@ -44,7 +44,7 @@ const ItemListContainer = ({ greeting, variant }) => {
             :    
                 <Items variant={variant}>
                     {items.map(item =>
-                        <Link to={`/manga/${item.id}`}>
+                        <Link to={`/manga/${item.id}`} key={item.id}>
                             <Item variant={variant} data={item} onAdd={onAdd} key={item.id} />
                         </Link>
                     )}

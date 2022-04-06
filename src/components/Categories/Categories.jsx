@@ -32,9 +32,9 @@ const CategoriesWrapper = styled.div`
     position: absolute;
     top: 64.5px;
     width: 100%;
-    backdrop-filter: blur(5px);
     padding: 0 10px;
     transition: 1s;
+    z-index: 1;
 `;
 
 const CategoriesContainer = styled.section`
