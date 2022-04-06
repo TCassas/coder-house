@@ -43,11 +43,15 @@ const ItemListContainer = ({ greeting, variant }) => {
                 <Loader />
             :    
                 <Items variant={variant}>
-                    {items.map(item =>
-                        <Link to={`/manga/${item.id}`} key={item.id}>
-                            <Item variant={variant} data={item} onAdd={onAdd} key={item.id} />
-                        </Link>
-                    )}
+                    {items.length > 0 ?
+                        items.map(item =>
+                            <Link to={`/manga/${item.id}`} key={item.id}>
+                                <Item variant={variant} data={item} onAdd={onAdd} key={item.id} />
+                            </Link>
+                        )
+                    :
+                        <h1>404 - Mangas not found</h1>
+                    }
                 </Items>
             }
         </ItemsContainer>
