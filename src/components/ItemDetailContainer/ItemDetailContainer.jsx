@@ -24,7 +24,12 @@ const ItemDetailContainer = () => {
             {loading ?
                 <Loader />
             :
-                <ItemDetail item={ item } />
+                (item ?
+                    <ItemDetail item={ item } />
+                :
+                    <h1>404 - Manga not found</h1>
+                )
+                
             }
         </ItemDetailWrapper>
     )

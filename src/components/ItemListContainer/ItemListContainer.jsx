@@ -42,17 +42,17 @@ const ItemListContainer = ({ greeting, variant }) => {
             { loading ?
                 <Loader />
             :    
-                <Items variant={variant}>
-                    {items.length > 0 ?
-                        items.map(item =>
-                            <Link to={`/manga/${item.id}`} key={item.id}>
-                                <Item variant={variant} data={item} onAdd={onAdd} key={item.id} />
-                            </Link>
-                        )
-                    :
-                        <h1>404 - Mangas not found</h1>
-                    }
-                </Items>
+                (items.length > 0 ?
+                    <Items variant={variant}>
+                            {items.map(item =>
+                                <Link to={`/manga/${item.id}`} key={item.id}>
+                                    <Item variant={variant} data={item} onAdd={onAdd} key={item.id} />
+                                </Link>
+                            )}
+                    </Items>
+                :
+                    <h1>404 - Mangas not found</h1>
+                )
             }
         </ItemsContainer>
     )
@@ -63,6 +63,10 @@ export default ItemListContainer
 const ItemsContainer = styled.section`
     display: flex;
     flex-direction: column;
+    
+    > h1 {
+        text-align: center
+    };
 `;
 
 const Items = styled.div`
