@@ -1,13 +1,18 @@
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
-const Categories = ({ categories }) => {
+const Categories = ({ categories, setShowDrop }) => {
     return (
         <CategoriesWrapper>
             <CategoriesContainer className="shadow">
                 <CategoriesColumn>
                     <strong>Genres</strong>
                     <CategoriesList>
-                        {categories.genres.map(genre => <div> { genre }</div>)}
+                        {categories.genres.map(genre =>
+                            <Link to={`/genre/${genre}`} onClick={() => setShowDrop()}>
+                                <div> { genre } </div>
+                            </Link>
+                        )}
                     </CategoriesList>
                 </CategoriesColumn>
                 <CategoriesColumn>
@@ -27,7 +32,6 @@ const CategoriesWrapper = styled.div`
     position: absolute;
     top: 64.5px;
     width: 100%;
-    height: 100vh;
     backdrop-filter: blur(5px);
     padding: 0 10px;
     transition: 1s;

@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import Book from '../Book/Book'
 import ItemCount from '../ItemCount/ItemCount'
+import { Link } from 'react-router-dom'
 import { HiOutlineHeart, HiHeart } from 'react-icons/hi'
 import { useEffect, useState } from 'react'
 
@@ -35,7 +36,11 @@ const ItemDetail = ({ item })  => {
                 <strong><span>Audience</span>: { audience }</strong>
                 <strong><span>Genres</span></strong>
                 <ItemGenres>
-                    {genres.map(genre => <ItemGenre key={ genre }>{ genre }</ItemGenre>)}
+                    {genres.map(genre =>
+                        <Link to={`/genre/${genre}`}>
+                            <ItemGenre key={ genre }>{ genre }</ItemGenre>
+                        </Link>
+                    )}
                 </ItemGenres>
                 <ItemControls>
                     <ItemCounter>

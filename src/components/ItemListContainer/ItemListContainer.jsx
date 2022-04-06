@@ -1,18 +1,36 @@
 import { useState, useEffect } from 'react'
 import Item from '../Item/Item'
 import styled from 'styled-components'
-import ItemCount from '../ItemCount/ItemCount'
-import { getProducts } from '../../dataMock'
+import Loader from '../Loader/Loader'
+import { getProducts, getProductByGenre } from '../../dataMock'
+import { Link, useParams } from 'react-router-dom'
 import "./ItemListContainer.css"
 
 const ItemListContainer = ({ greeting, variant }) => {
     const [items, setItems] = useState([])
+    const [loading, setLoading] = useState(true)
+    const { genre } = useParams()
 
     useEffect(() => {
-        getProducts().then((res) => {
-            setItems(res);
+        if(genre) {
+            getProductByGenre(genre).then((res) => {
+                setItems(res);
+            }).finally(() => {
+                setLoading(false)
+            })
+        } else {
+            getProducts().then((res) => {
+                setItems(res);
+            }).finally(() => {
+                setLoading(false)
+            })
+        }
+
+        return (() => {
+            setItems([])
+            setLoading(true)
         })
-    }, [])
+    }, [genre])
 
     //Add to cart function
     const onAdd = (quantity) => {
@@ -21,13 +39,17 @@ const ItemListContainer = ({ greeting, variant }) => {
 
     return (
         <ItemsContainer className="itemListContainer">
-            <h1 className='gap-bot'>{greeting}</h1>
-            <div style={{margin: "0 auto 20px auto"}}>
-                <ItemCount stock={ 10 } initial={ 5 } onAdd={ onAdd } />
-            </div>
-            <Items variant={variant}>
-                {items.map(item => <Item variant={variant} data={item} onAdd={onAdd} key={item.id} />)}
-            </Items>
+            { loading ?
+                <Loader />
+            :    
+                <Items variant={variant}>
+                    {items.map(item =>
+                        <Link to={`/manga/${item.id}`}>
+                            <Item variant={variant} data={item} onAdd={onAdd} key={item.id} />
+                        </Link>
+                    )}
+                </Items>
+            }
         </ItemsContainer>
     )
 }
