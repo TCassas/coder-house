@@ -5,7 +5,7 @@ const Variant3 = ( { data } ) => {
 
     return (
         <ItemContainer>
-            <ItemPhoto image={img}/>
+            <ItemPhoto image={`/imgs/${img}`}/>
             <ItemName>{name}</ItemName>
             <ItemInfo>
                 <p>{author}</p>

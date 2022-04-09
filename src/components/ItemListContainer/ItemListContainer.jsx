@@ -2,7 +2,10 @@ import { useState, useEffect } from 'react'
 import Item from '../Item/Item'
 import styled from 'styled-components'
 import Loader from '../Loader/Loader'
-import { getProducts, getProductByGenre } from '../../dataMock'
+import { collection, getDocs, query, where } from 'firebase/firestore'
+import { firestoreDb } from '../../services/firebase'
+
+
 import { Link, useParams } from 'react-router-dom'
 import "./ItemListContainer.css"
 
@@ -12,19 +15,18 @@ const ItemListContainer = ({ greeting, variant }) => {
     const { genre } = useParams()
 
     useEffect(() => {
-        if(genre) {
-            getProductByGenre(genre).then((res) => {
-                setItems(res);
-            }).finally(() => {
-                setLoading(false)
+        const colletionRef = genre ? 
+            query(collection(firestoreDb, 'products'), where('genres', '==', genre)) :
+            collection(firestoreDb, 'products')
+
+        getDocs(colletionRef).then((querySnapshot) => {
+            const products = querySnapshot.docs.map(doc => {
+                return { id: doc.id, ...doc.data() }
             })
-        } else {
-            getProducts().then((res) => {
-                setItems(res);
-            }).finally(() => {
-                setLoading(false)
-            })
-        }
+            setItems(products)            
+        }).finally(() => {
+            setLoading(false)
+        })
 
         return (() => {
             setItems([])
