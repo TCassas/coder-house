@@ -1,7 +1,5 @@
 import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer'
-import Loader from './components/Loader/Loader'
-import styled from 'styled-components'
-import ItemHighlightContainer from './components/ItemHighlightContainer/ItemHighlightContainer';
+import CartContainer from './components/CartContainer/CartContainer'
 import NavBar from './components/NavBar/NavBar';
 import ItemListContainer from './components/ItemListContainer/ItemListContainer.jsx'
 import Footer from './components/Footer/Footer.jsx'
@@ -17,6 +15,7 @@ function App() {
           <Route path='/' element={ <ItemListContainer variant={3} />} />
           <Route path='/manga/:id' element={ <ItemDetailContainer  />} />
           <Route path='/genre/:genre' element={ <ItemListContainer variant={3} />} />
+          <Route path='/cart' element={ <CartContainer />} />
         </Routes>
         <Footer />
       </BrowserRouter>

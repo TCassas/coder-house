@@ -1,4 +1,4 @@
-import Cart from "../Cart/Cart"
+import NavCartButton from "../NavCartButton/NavCartButton"
 import Navlink from "../NavLink/NavLink"
 import Search from "../Search/Search"
 import styled from 'styled-components'
@@ -26,7 +26,7 @@ const Navbar = () => {
                 </Link> */}
                 <Navlink href="#" text="Login" />
                 <Navlink href="#" text="Register" />
-                <Cart cartContent={[]}/> {/*If there are items in the cart, the icon changes. Thought creating a cart element would open some future improvements*/}
+                <NavCartButton cartContent={[]}/> {/*If there are items in the cart, the icon changes. Thought creating a cart element would open some future improvements*/}
             </div>
             <div className="mobile-menu-container">
                 <HiMenu className="mobile-menu-icon"/>

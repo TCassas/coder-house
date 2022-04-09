@@ -1,13 +1,6 @@
-import './Cart.css'
-import { HiShoppingCart, HiOutlineShoppingCart } from "react-icons/hi"
-
-const Cart = ({ cartContent }) => {
+const Cart = () => {
     return (
-        <button className="cart-button">
-            <span>
-                { cartContent?.length ? <HiShoppingCart /> : <HiOutlineShoppingCart /> }
-            </span> { cartContent?.length ? cartContent.length : 0 }
-        </button>
+        <h1>Cart</h1>
     )
 }
 
