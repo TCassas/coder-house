@@ -63,6 +63,7 @@ export default ItemListContainer
 const ItemsContainer = styled.section`
     display: flex;
     flex-direction: column;
+    margin: 14px 0;
     
     > h1 {
         text-align: center
@@ -71,8 +72,10 @@ const ItemsContainer = styled.section`
 
 const Items = styled.div`
     display: grid;
+    justify-content: space-around;
     grid-template-columns: repeat(auto-fit, minmax(
         ${(props) => props.variant === 2 ? "300px" : "200px"}, 1fr
     ));
+
     row-gap: ${(props) => props.variant === 2 ? "3px" : "26px"};
 `;

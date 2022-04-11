@@ -8,6 +8,7 @@ const ItemHighlight = ({ manga }) => {
                 size={3}
                 thickness={3}
                 enableZoom={false}
+                cover={manga.img}
             />
         </ItemHighlightContainer>
     )
@@ -16,7 +17,7 @@ const ItemHighlight = ({ manga }) => {
 export default ItemHighlight
 
 const ItemHighlightContainer = styled.section`
-    width: 100%;
-    height: 450px;
+    width: 240px;
+    height: 250px;
 `;
 

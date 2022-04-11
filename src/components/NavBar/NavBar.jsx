@@ -21,9 +21,9 @@ const Navbar = () => {
             </div>
             <div className="navbar-right">
                 <Navlink href="#" text="Categories" categories={[""]} setShowDrop={setShowDrop} showDrop={showDrop} />
-                {/* <Link to={`/manga`}>
+                <Link to={`/manga`}>
                     <Navlink href="#" text="Catalog" />
-                </Link> */}
+                </Link>
                 <Navlink href="#" text="Login" />
                 <Navlink href="#" text="Register" />
                 <NavCartButton cartContent={[]}/> {/*If there are items in the cart, the icon changes. Thought creating a cart element would open some future improvements*/}

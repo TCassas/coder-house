@@ -125,6 +125,26 @@ const getProductById = (id) => {
     })
 }
 
+const getProductsByIds = (ids) => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            const products = [];
+            for(let id of ids) {
+                products.push(dataMock.find(item => item.id === parseInt(id)))
+            }
+            resolve(products)
+        },2000)
+    })
+}
+
+const getProductsByAuthor = (author) => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve(dataMock.filter(item => item.author.toLowerCase() === author.toLowerCase()))
+        },2000)
+    })
+}
+
 const getProductByGenre = (genreSearch) => {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
@@ -133,4 +153,4 @@ const getProductByGenre = (genreSearch) => {
     })
 }
 
-export { getProducts, getProductById, getProductByGenre }
+export { getProducts, getProductById, getProductsByIds, getProductByGenre, getProductsByAuthor }

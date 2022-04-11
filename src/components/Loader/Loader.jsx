@@ -18,6 +18,10 @@ const LoaderContainer = styled.picture`
     justify-content: center;
 
     img {
-        width: 12em;
+        width: 6em;
+    }
+
+    h1 {
+        font-size: 10px;
     }
 `;
