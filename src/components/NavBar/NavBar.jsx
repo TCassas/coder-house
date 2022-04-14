@@ -26,7 +26,7 @@ const Navbar = () => {
                 </Link>
                 <Navlink href="#" text="Login" />
                 <Navlink href="#" text="Register" />
-                <NavCartButton cartContent={[]}/> {/*If there are items in the cart, the icon changes. Thought creating a cart element would open some future improvements*/}
+                <NavCartButton /> {/*If there are items in the cart, the icon changes. Thought creating a cart element would open some future improvements*/}
             </div>
             <div className="mobile-menu-container">
                 <HiMenu className="mobile-menu-icon"/>

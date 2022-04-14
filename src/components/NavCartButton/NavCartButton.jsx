@@ -1,12 +1,16 @@
 import './Cart.css'
 import { HiShoppingCart, HiOutlineShoppingCart } from "react-icons/hi"
+import { useContext } from 'react'
+import CartContext from '../../context/CartContext'
 
-const NavCartButton = ({ cartContent }) => {
+const NavCartButton = () => {
+    const { cart } = useContext(CartContext)
+
     return (
         <button className="cart-button">
             <span>
-                { cartContent?.length ? <HiShoppingCart /> : <HiOutlineShoppingCart /> }
-            </span> { cartContent?.length ? cartContent.length : 0 }
+                { cart.length ? <HiShoppingCart /> : <HiOutlineShoppingCart /> }
+            </span> { cart.length }
         </button>
     )
 }
