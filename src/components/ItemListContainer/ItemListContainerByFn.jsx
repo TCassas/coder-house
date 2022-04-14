@@ -36,7 +36,7 @@ const ItemLIstContainerByProp = ({ fn, param, variant, title }) => {
                     <>
                         <motion.div
                             drag='x'
-                            dragConstraints={{right: 0, left: (items.length - 1) * -200}}
+                            dragConstraints={{right: 0, left: (items.length - 1) * -314.6}}
                         >
                             <Items variant={variant}>
                                 {items.map(item =>
@@ -69,10 +69,9 @@ const ItemsContainer = styled.section`
 
 const Items = styled.div`
     display: flex;
-    align-items: center;
     width: max-content;
     gap: 20px;
-    height: 130px;
+    height: 120px;
     cursor: grab;
 
     a {
