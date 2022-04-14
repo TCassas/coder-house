@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import Item from '../Item/Item'
+import Dummy from '../Item/Dummy'
 import styled from 'styled-components'
 import Loader from '../Loader/Loader'
 import { Link } from 'react-router-dom'
@@ -22,7 +23,14 @@ const ItemLIstContainerByProp = ({ fn, param, variant, title }) => {
         <ItemsContainer className="itemListContainer">
             <strong>{title}</strong>
             { loading ?
-                <Loader />
+                <Items>
+                    <Dummy />
+                    <Dummy />
+                    <Dummy />
+                    <Dummy />
+                    <Dummy />
+                    <Dummy />
+                </Items>
             :    
                 (items.length > 0 ?
                     <>
@@ -32,9 +40,9 @@ const ItemLIstContainerByProp = ({ fn, param, variant, title }) => {
                         >
                             <Items variant={variant}>
                                 {items.map(item =>
-                                        <Link to={`/manga/${item.id}`} key={item.id}>
-                                            <Item variant={variant} data={item}  key={item.id} />
-                                        </Link>
+                                    <Link to={`/manga/${item.id}`} key={item.id}>
+                                        <Item variant={variant} data={item}  key={item.id} />
+                                    </Link>
                                 )}
                             </Items>
                         </motion.div>
