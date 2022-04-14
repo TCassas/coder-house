@@ -3,7 +3,6 @@ import Book from '../Book/Book'
 import ItemCount from '../ItemCount/ItemCount'
 import { Link } from 'react-router-dom'
 import { HiOutlineHeart, HiHeart } from 'react-icons/hi'
-import { useEffect, useState } from 'react'
 
 const ItemDetail = ({ item })  => {
     const {author, id, img, info, name, price, stock, description, audience, genres } = item
@@ -16,9 +15,9 @@ const ItemDetail = ({ item })  => {
             <ItemDetailLeft>
                 <Book
                     size={3}
-                    cover={img}
                     thickness={3}
                     enableZoom={false}
+                    cover={`/imgs/${img}`}
                 />
             </ItemDetailLeft>
             <ItemDetailRight>

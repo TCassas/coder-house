@@ -4,6 +4,8 @@ import { getProductById } from '../../dataMock'
 import { useState, useEffect } from 'react'
 import Loader from "../Loader/Loader"
 import { useParams } from "react-router-dom"
+import { collection, doc, getDoc, query, where } from 'firebase/firestore'
+import { firestoreDb } from '../../services/firebase'
 
 const ItemDetailContainer = () => {
     const [item, setItem] = useState({})
@@ -11,12 +13,13 @@ const ItemDetailContainer = () => {
     const { id } = useParams();
 
     useEffect(() => {
-        getProductById(id).then((res) => {
-            setItem(res)
-        })
-        .finally(() => {
-            setLoading(!loading)
-        })
+        const fetchItem = async () => {
+            const snap = await getDoc(doc(firestoreDb, 'products', id))
+            setItem(snap.data())
+            setLoading(false)
+        }
+
+        fetchItem()
     }, [])
       
     return (
