@@ -1,14 +1,34 @@
 import styled from 'styled-components'
 import Book from '../Book/Book'
 import ItemCount from '../ItemCount/ItemCount'
-import { HiOutlineHeart, HiHeart } from 'react-icons/hi'
-import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
+import { HiOutlineHeart, HiArrowCircleRight, HiOutlineX } from 'react-icons/hi'
+import { useState, useContext, useEfect, useEffect } from 'react'
+import CartContext from '../../context/CartContext'
 
 const ItemDetail = ({ item })  => {
-    const {author, id, img, info, name, price, stock, description, audience, genres } = item
+    const { id, author, img, info, name, price, stock, description, audience, genres } = item
+    const [countInCart, setCountInCart] = useState(0)
+    const { addItem, isInCart, removeItem } = useContext(CartContext)
+
     const onAdd = (quantity) => {
-        console.log(quantity)
+        if(quantity > 0) {
+            setCountInCart(quantity)
+            addItem({ id, name, price, author, img, stock }, quantity)
+        }
     }
+
+    const onRemove = () => {
+        removeItem(id)
+        setCountInCart(0)
+    }
+
+    useEffect(() => {
+        const itemInCart = isInCart(id)
+        if(itemInCart) {
+            setCountInCart(itemInCart.quantity)
+        }
+    }, [])
 
     return (
         <ItemDetailContainer>
@@ -35,12 +55,25 @@ const ItemDetail = ({ item })  => {
                 <strong><span>Audience</span>: { audience }</strong>
                 <strong><span>Genres</span></strong>
                 <ItemGenres>
-                    {genres.map(genre => <ItemGenre key={ genre }>{ genre }</ItemGenre>)}
+                    { genres.map(genre =>
+                        <Link to={`/genre/${genre}`}>
+                            <ItemGenre key={ genre }>{ genre }</ItemGenre>
+                        </Link>
+                    )}
                 </ItemGenres>
                 <ItemControls>
-                    <ItemCounter>
+                    { countInCart === 0 ?
                         <ItemCount stock={ stock } initial={ 0 } onAdd={ onAdd } />
-                    </ItemCounter>
+                    :
+                        <GoToCart>
+                            <RemoveFromCart
+                                onClick={() => onRemove()}
+                            >
+                                <HiOutlineX />
+                            </RemoveFromCart>
+                            <Link to={'/cart'}>Go to cart <HiArrowCircleRight /></Link>
+                        </GoToCart>
+                    }
                 </ItemControls>
             </ItemDetailRight>
         </ItemDetailContainer>
@@ -127,6 +160,7 @@ const ItemControls = styled.div`
     justify-content: center;
     align-items: flex-start;
     gap: 10px;
+    width: 100%;
     margin-top: 10px;
 `;
 
@@ -139,6 +173,29 @@ const ItemLike = styled.button`
     cursor: pointer;
 `;
 
-const ItemCounter = styled.div`
-    
+const GoToCart = styled.div`
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+
+    a {
+        display: flex;
+        align-items: center;
+        font-weight: bold;
+        font-size: 20px;
+        padding: 3px 15px;
+        color: white;
+        background-color: #009C5E;
+        gap: 10px
+    }
+`;
+
+const RemoveFromCart = styled.button`
+    display: flex;
+    align-items: center;
+    border: none;
+    background-color: #FCE100;
+    padding: 0 10px;
+    font-size: 20px;
+    cursor: pointer;
 `;

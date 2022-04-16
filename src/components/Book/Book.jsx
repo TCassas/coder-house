@@ -1,4 +1,4 @@
-import React, { Suspense } from "react"
+import React, { Suspense, memo } from "react"
 import styled from "styled-components"
 import { Canvas } from "@react-three/fiber";
 import BookModel from "./BookModel";
@@ -36,4 +36,4 @@ const Wrapper = styled.div`
     }
 `;
 
-export default Book
+export default memo(Book)

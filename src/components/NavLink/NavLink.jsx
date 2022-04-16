@@ -1,15 +1,20 @@
 import "./NavLink.css"
-import { HiChevronDown } from "react-icons/hi";
+import { HiChevronDown, HiChevronUp } from "react-icons/hi";
 
-const Navlink = ({ href, text, categories }) => {
+const Navlink = ({ href, text, categories, setShowDrop, showDrop }) => {
     return (
-        <a
-            href={`${href}`}
-            className="navlink"
-        >
+        <div className="navlink">
             {text}
-            {categories?.length && <HiChevronDown className="navlink-dropdown"/>}
-        </a>
+            {categories?.length &&
+                <>
+                    {showDrop ?
+                        <HiChevronDown className="navlink-dropdown" onClick={() => setShowDrop(!showDrop)}/>
+                    :
+                        <HiChevronUp className="navlink-dropdown" onClick={() => setShowDrop(!showDrop)}/>
+                    }
+                </>
+            }
+        </div>
     )
 }
 
