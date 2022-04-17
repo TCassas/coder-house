@@ -3,7 +3,7 @@ import Book from '../Book/Book'
 import ItemCount from '../ItemCount/ItemCount'
 import { Link } from 'react-router-dom'
 import { HiOutlineHeart, HiArrowCircleRight, HiOutlineX } from 'react-icons/hi'
-import { useState, useContext, useEfect, useEffect } from 'react'
+import { useState, useContext, useEffect } from 'react'
 import CartContext from '../../context/CartContext'
 
 const ItemDetail = ({ item })  => {
@@ -28,7 +28,7 @@ const ItemDetail = ({ item })  => {
         if(itemInCart) {
             setCountInCart(itemInCart.quantity)
         }
-    }, [])
+    }, [id])
 
     return (
         <ItemDetailContainer>
