@@ -8,7 +8,7 @@ const CartContainer = () => {
 
     return (
         <CartContainerWrapper>
-            <Cart items={ cart } getTotal={getCartTotal} />
+            <Cart items={ cart } getTotal={ getCartTotal } />
         </CartContainerWrapper>
     )
 }

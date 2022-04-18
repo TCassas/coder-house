@@ -5,13 +5,13 @@ import CartContext from '../../context/CartContext'
 import { Link } from 'react-router-dom'
 
 const NavCartButton = () => {
-    const { cart } = useContext(CartContext)
+    const { cart, getCartCount } = useContext(CartContext)
 
     return (
         <Link to={'/cart'} className="cart-button">
             <span>
                 { cart.length ? <HiShoppingCart /> : <HiOutlineShoppingCart /> }
-            </span> { cart.length }
+            </span> { getCartCount() }
         </Link>
     )
 }
