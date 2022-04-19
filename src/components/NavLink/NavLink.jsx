@@ -1,9 +1,10 @@
 import "./NavLink.css"
 import { HiChevronDown, HiChevronUp } from "react-icons/hi";
+import { Link } from "react-router-dom";
 
 const Navlink = ({ href, text, categories, setShowDrop, showDrop }) => {
     return (
-        <div className="navlink">
+        <Link to={href && href} className="navlink">
             {text}
             {categories?.length &&
                 <>
@@ -14,7 +15,7 @@ const Navlink = ({ href, text, categories, setShowDrop, showDrop }) => {
                     }
                 </>
             }
-        </div>
+        </Link>
     )
 }
 

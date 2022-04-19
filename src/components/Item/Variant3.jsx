@@ -29,7 +29,6 @@ const ItemContainer = styled.article`
     box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.25);
     border-radius: 6px;
     transition: 0.5s;
-    background-color: white;
     
     &:hover {
         box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.25);
