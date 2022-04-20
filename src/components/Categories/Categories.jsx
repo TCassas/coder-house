@@ -1,24 +1,18 @@
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
-const Categories = ({ categories, setShowDrop }) => {
+const Categories = ({ setShowDrop, genres }) => {
     return (
         <CategoriesWrapper>
             <CategoriesContainer className="shadow">
                 <CategoriesColumn>
                     <strong>Genres</strong>
                     <CategoriesList>
-                        {categories.genres.map(genre =>
-                            <Link to={`/genre/${genre}`} onClick={() => setShowDrop()}>
+                        {genres.map(genre =>
+                            <Link to={`/genre/${genre}`} onClick={() => setShowDrop()} key={genre}>
                                 <div> { genre } </div>
                             </Link>
                         )}
-                    </CategoriesList>
-                </CategoriesColumn>
-                <CategoriesColumn>
-                    <strong>Categories</strong>
-                    <CategoriesList>
-                        {categories.categories.map(categorie => <div> { categorie }</div>)}
                     </CategoriesList>
                 </CategoriesColumn>
             </CategoriesContainer>

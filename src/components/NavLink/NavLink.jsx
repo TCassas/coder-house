@@ -1,12 +1,14 @@
 import "./NavLink.css"
 import { HiChevronDown, HiChevronUp } from "react-icons/hi";
 import { Link } from "react-router-dom";
+import { useEffect } from 'react'
 
-const Navlink = ({ href, text, categories, setShowDrop, showDrop }) => {
+const Navlink = ({ href, text, droppable, setShowDrop, showDrop }) => {
+    
     return (
-        <Link to={href && href} className="navlink">
+        <Link to={href} className="navlink">
             {text}
-            {categories?.length &&
+            {droppable &&
                 <>
                     {showDrop ?
                         <HiChevronDown className="navlink-dropdown" onClick={() => setShowDrop(!showDrop)}/>

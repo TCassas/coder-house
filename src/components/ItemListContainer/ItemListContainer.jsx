@@ -2,8 +2,7 @@ import { useState, useEffect } from 'react'
 import Item from '../Item/Item'
 import styled from 'styled-components'
 import Loader from '../Loader/Loader'
-import { collection, getDocs, query, where } from 'firebase/firestore'
-import { firestoreDb } from '../../services/firebase'
+import { GetItems } from '../../services/items'
 
 
 import { Link, useParams } from 'react-router-dom'
@@ -15,18 +14,13 @@ const ItemListContainer = ({ greeting, variant }) => {
     const { genre } = useParams()
 
     useEffect(() => {
-        const colletionRef = genre ? 
-            query(collection(firestoreDb, 'products'), where('genres', '==', genre)) :
-            collection(firestoreDb, 'products')
+        fetchItems()
 
-        getDocs(colletionRef).then((querySnapshot) => {
-            const products = querySnapshot.docs.map(doc => {
-                return { id: doc.id, ...doc.data() }
-            })
-            setItems(products)            
-        }).finally(() => {
+        async function fetchItems() {
+            const items = await GetItems(genre)
+            setItems(items)
             setLoading(false)
-        })
+        }
 
         return (() => {
             setItems([])
