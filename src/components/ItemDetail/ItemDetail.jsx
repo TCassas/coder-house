@@ -56,15 +56,14 @@ const ItemDetail = ({ item })  => {
                 <strong><span>Genres</span></strong>
                 <ItemGenres>
                     { genres.map(genre =>
-                        <Link to={`/genre/${genre}`}>
-                            <ItemGenre key={ genre }>{ genre }</ItemGenre>
+                        <Link key={ genre } to={`/genre/${genre}`}>
+                            <ItemGenre>{ genre }</ItemGenre>
                         </Link>
                     )}
                 </ItemGenres>
-                <ItemControls>
-                    { countInCart === 0 ?
-                        <ItemCount stock={ stock } initial={ 0 } onAdd={ onAdd } />
-                    :
+                <ItemControls both={ countInCart > 0 }>
+                    <ItemCount stock={ stock } initial={ 0 } onAdd={ onAdd } />
+                    { countInCart > 0 &&
                         <GoToCart>
                             <RemoveFromCart
                                 onClick={() => onRemove()}
@@ -157,11 +156,16 @@ const ItemGenre = styled.article`
 
 const ItemControls = styled.div`
     display: flex;
-    justify-content: center;
+    justify-content: ${(props) => props.both ? 'space-between' : 'center'};
     align-items: flex-start;
     gap: 10px;
     width: 100%;
     margin-top: 10px;
+
+    @media (max-width: 925px) {
+        flex-direction: column;
+        align-items: center;
+    }
 `;
 
 const ItemLike = styled.button`
@@ -175,8 +179,6 @@ const ItemLike = styled.button`
 
 const GoToCart = styled.div`
     display: flex;
-    justify-content: flex-end;
-    width: 100%;
 
     a {
         display: flex;

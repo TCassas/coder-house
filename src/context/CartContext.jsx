@@ -10,8 +10,16 @@ export const CartContextProvider = ({ children }) => {
             ...item,
             quantity
         }
+        
+        if(isInCart(itemToAdd.id)) {
+            for(let item of cart) {
+                item.quantity = (item.id === itemToAdd.id) && quantity
+            }
 
-        !isInCart(itemToAdd.id) && setCart([...cart, itemToAdd])
+            setCart([...cart])
+        } else {
+            setCart([...cart, itemToAdd])
+        }
     }
 
     const removeItem = (id) => {
@@ -32,6 +40,7 @@ export const CartContextProvider = ({ children }) => {
     const getCartTotal = () => {
         let total = 0
         cart.forEach(item => total += item.quantity * item.price)
+
         return total
     }
 

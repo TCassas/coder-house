@@ -24,7 +24,7 @@ const Book = ({ size, cover = "/imgs/akira-cover.jpeg", thickness, enableZoom })
 
 const Wrapper = styled.div`
     display: flex;
-    height: 100%;
+    height: 99%;
     width: 99%; //Muy extraño, pero es la solución que encontré a que el modelo 3d haga resize
     cursor: grab;
     margin: 0 auto;

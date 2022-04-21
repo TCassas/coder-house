@@ -38,7 +38,7 @@ const Cart = ({ items, getTotal }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    { items.map( item => <CartItem item={ item } />)}
+                    { items.map( item => <CartItem key={ item.id } item={ item } />)}
                 </tbody>
             </CartItemTable>
         </CartItemListWrapper>

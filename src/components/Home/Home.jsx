@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import ItemLIstContainerByFn from '../ItemListContainer/ItemListContainerByFn'
-import { getProductsByAuthor, getProducts, getProductByGenre } from '../../dataMock'
+import { GetItems, GetItemsByAuthor } from '../../services/items'
 
 const Home = () => {
     return (
@@ -12,16 +12,16 @@ const Home = () => {
                 </BrandHighlight>
             </HighlightHeader>
             <HighlightSet>
-                <ItemLIstContainerByFn fn={getProducts} variant={2} title={"Most Popular"} />
+                <ItemLIstContainerByFn fn={ GetItems } variant={2} title={"Most Popular"} />
             </HighlightSet>
             <HighlightSet>
-                <ItemLIstContainerByFn fn={getProductByGenre} param={"action"} variant={2} title={"Action mangas"} />
+                <ItemLIstContainerByFn fn={ GetItems } param={"action"} variant={2} title={"Action mangas"} />
             </HighlightSet>
             <HighlightSet>
-                <ItemLIstContainerByFn fn={getProductsByAuthor} param={"junji ito"} variant={2} title={"Junji Ito Collection"} />
+                <ItemLIstContainerByFn fn={ GetItemsByAuthor } param={"Junji Ito"} variant={2} title={"Junji Ito Collection"} />
             </HighlightSet>
             <HighlightSet>
-                <ItemLIstContainerByFn fn={getProductsByAuthor} param={"makoto yukimura"} variant={2} title={"Makoto Yukimura Collection"} />
+                <ItemLIstContainerByFn fn={ GetItemsByAuthor } param={"Makoto Yukimura"} variant={2} title={"Makoto Yukimura Collection"} />
             </HighlightSet>
         </HomeWrapper>
     )

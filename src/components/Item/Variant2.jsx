@@ -16,7 +16,7 @@ const Variant2 = ( { data } ) => {
                     {/* categorias */}
                 </ItemInfo>
             </LeftSide>
-            <RightSide image={img} >
+            <RightSide img={`/imgs/${img}`} >
             </RightSide>
         </ItemContainer>
     )
@@ -47,7 +47,7 @@ const ItemContainer = styled.article`
 `;
 
 const RightSide = styled.picture`
-    background-image: url(${(props) => props.image}); //picante
+    background-image: url(${(props) => props.img}); //picante
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
