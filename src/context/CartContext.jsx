@@ -11,10 +11,10 @@ export const CartContextProvider = ({ children }) => {
             quantity
         }
         
-        if(isInCart(itemToAdd.id)) {
-            for(let item of cart) {
-                item.quantity = (item.id === itemToAdd.id) && quantity
-            }
+        const indexOfItemIncart = isInCart(itemToAdd.id).index
+        if(indexOfItemIncart > -1) {
+            const newCart = cart
+            newCart[indexOfItemIncart].quantity = (item.id === itemToAdd.id) && quantity
 
             setCart([...cart])
         } else {
@@ -30,7 +30,12 @@ export const CartContextProvider = ({ children }) => {
     }
 
     const isInCart = (id) => {
-        return cart.find(itemInCart => itemInCart.id === id)
+        const indexInCart = cart.findIndex(itemInCart => itemInCart.id === id)
+
+        return {
+            index: indexInCart,
+            data: cart[indexInCart]
+        }
     }
 
     const clearCart = (item) => {

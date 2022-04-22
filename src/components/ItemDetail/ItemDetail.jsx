@@ -25,8 +25,8 @@ const ItemDetail = ({ item })  => {
 
     useEffect(() => {
         const itemInCart = isInCart(id)
-        if(itemInCart) {
-            setCountInCart(itemInCart.quantity)
+        if(itemInCart.data) {
+            setCountInCart(itemInCart.data.quantity)
         }
     }, [id])
 
@@ -62,7 +62,7 @@ const ItemDetail = ({ item })  => {
                     )}
                 </ItemGenres>
                 <ItemControls both={ countInCart > 0 }>
-                    <ItemCount stock={ stock } initial={ 0 } onAdd={ onAdd } />
+                    <ItemCount stock={ stock } initial={ countInCart } onAdd={ onAdd } />
                     { countInCart > 0 &&
                         <GoToCart>
                             <RemoveFromCart
