@@ -1,19 +1,28 @@
 import styled from "styled-components"
 import ItemDetail from "../ItemDetail/ItemDetail"
-import { useState, useEffect } from 'react'
 import Loader from "../Loader/Loader"
 import { useParams } from "react-router-dom"
 import { getItemById } from "../../services/items"
+import { useState, useEffect, useContext } from 'react'
+import CartContext from '../../context/CartContext'
 
 const ItemDetailContainer = () => {
     const [item, setItem] = useState({})
     const [loading, setLoading] = useState(true)
     const { id } = useParams();
+    const { isInCart } = useContext(CartContext)
 
     useEffect(() => {
         const fetchItem = async () => {
-            const item = await getItemById(id)
-            item && setItem(item)
+            const itemById = await getItemById(id)
+            const itemInCart = await (isInCart(id))
+
+            if(itemInCart.data) {
+                setItem(itemInCart.data)
+            } else {
+                itemById && setItem(itemById)
+            }
+
             setLoading(false)
         }
 

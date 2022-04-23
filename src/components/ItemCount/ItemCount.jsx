@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import styled from "styled-components";
 
-const ItemCount = ({ stock, initial, onAdd }) => {
+const ItemCount = ({ stock, initial, onAdd, alreadyInCart }) => {
     const [count, setCount] = useState(initial ? initial : 0)
 
     const addOne = () => {
@@ -44,7 +44,8 @@ const ItemCount = ({ stock, initial, onAdd }) => {
                     />
                     <CartButton onClick={() => addOne()}>+</CartButton>
                 </CartControls>
-                <CartButton onClick={() => onAdd(count)}>Agregar al carrito</CartButton>                    
+                {/* <CartButton onClick={() => onAdd(count)}>{`${ quantity ? "Add to the cart" : "Edit quantity in cart"}`}</CartButton>*/}
+                <CartButton onClick={() => onAdd(count)}>{!alreadyInCart ? 'Add to cart' : 'Edit quantity in cart'}</CartButton>
             </CartCount>
         </div>
     )

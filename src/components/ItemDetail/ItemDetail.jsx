@@ -7,14 +7,14 @@ import { useState, useContext, useEffect } from 'react'
 import CartContext from '../../context/CartContext'
 
 const ItemDetail = ({ item })  => {
-    const { id, author, img, info, name, price, stock, description, audience, genres } = item
-    const [countInCart, setCountInCart] = useState(0)
-    const { addItem, isInCart, removeItem } = useContext(CartContext)
+    const { id, author, img, info, name, price, stock, description, audience, genres, quantity } = item
+    const { addItem, removeItem } = useContext(CartContext)
+    const [countInCart, setCountInCart] = useState(quantity)
 
     const onAdd = (quantity) => {
         if(quantity > 0) {
             setCountInCart(quantity)
-            addItem({ id, name, price, author, img, stock }, quantity)
+            addItem({ ...item }, quantity)
         }
     }
 
@@ -22,13 +22,6 @@ const ItemDetail = ({ item })  => {
         removeItem(id)
         setCountInCart(0)
     }
-
-    useEffect(() => {
-        const quantityInCart = isInCart(id).data?.quantity
-        if(quantityInCart) {
-            setCountInCart(quantityInCart)
-        }
-    }, [])
 
     return (
         <ItemDetailContainer>
@@ -62,15 +55,16 @@ const ItemDetail = ({ item })  => {
                     )}
                 </ItemGenres>
                 <ItemControls both={ countInCart > 0 }>
-                    <ItemCount stock={ stock } initial={ countInCart } onAdd={ onAdd } />
+                    <ItemCount stock={ stock } initial={ countInCart } onAdd={ onAdd } alreadyInCart={ countInCart > 0 } />
                     { countInCart > 0 &&
                         <GoToCart>
+                            <Link to={'/cart'}>Go to cart <HiArrowCircleRight /></Link>
                             <RemoveFromCart
                                 onClick={() => onRemove()}
                             >
+                                <span>Remove from cart</span>
                                 <HiOutlineX />
                             </RemoveFromCart>
-                            <Link to={'/cart'}>Go to cart <HiArrowCircleRight /></Link>
                         </GoToCart>
                     }
                 </ItemControls>
@@ -123,7 +117,7 @@ const ItemDetailRight = styled.section`
         padding: 10px;
     }
 
-    span {
+    strong span {
         color: #F03A17;
     }
 
@@ -179,22 +173,29 @@ const ItemLike = styled.button`
 
 const GoToCart = styled.div`
     display: flex;
-
-    a {
-        display: flex;
-        align-items: center;
+    flex-direction: column;
+    
+    a, span {
         font-weight: bold;
         font-size: 20px;
-        padding: 3px 15px;
+    }
+    
+    a {
+        display: flex;
+        justify-content: flex-end;
+        gap: 4px;
+        text-align: right;
+        align-items: center;
+        padding-right: 10px;
         color: white;
         background-color: #009C5E;
-        gap: 10px
     }
 `;
 
 const RemoveFromCart = styled.button`
     display: flex;
     align-items: center;
+    gap: 4px;
     border: none;
     background-color: #FCE100;
     padding: 0 10px;
