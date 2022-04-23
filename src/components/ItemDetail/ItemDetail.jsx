@@ -24,11 +24,11 @@ const ItemDetail = ({ item })  => {
     }
 
     useEffect(() => {
-        const itemInCart = isInCart(id)
-        if(itemInCart.data) {
-            setCountInCart(itemInCart.data.quantity)
+        const quantityInCart = isInCart(id).data?.quantity
+        if(quantityInCart) {
+            setCountInCart(quantityInCart)
         }
-    }, [id])
+    }, [])
 
     return (
         <ItemDetailContainer>

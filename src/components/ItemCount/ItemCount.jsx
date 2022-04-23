@@ -1,8 +1,8 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import styled from "styled-components";
 
 const ItemCount = ({ stock, initial, onAdd }) => {
-    const [count, setCount] = useState(parseInt(initial) ? initial : 0)
+    const [count, setCount] = useState(initial ? initial : 0)
 
     const addOne = () => {
         if(count + 1 <= stock) {
@@ -26,6 +26,10 @@ const ItemCount = ({ stock, initial, onAdd }) => {
             setCount(parseInt(value))
         }
     }
+
+    useEffect(() => {
+        console.log(count)
+    }, [count])
 
     return (
         <div>
