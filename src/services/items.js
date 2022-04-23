@@ -1,7 +1,7 @@
-import { collection, doc, getDoc, getDocs, query, where } from 'firebase/firestore'
+import { collection, doc, getDoc, getDocs, query, where, addDoc } from 'firebase/firestore'
 import { firestoreDb } from './firebase'
 
-export const GetItems = async (genre) => {
+export const getItems = async (genre) => {
     const collectionRef = genre ? 
         query(collection(firestoreDb, 'products'), where('genres', 'array-contains', genre)) :
         collection(firestoreDb, 'products')
@@ -27,7 +27,7 @@ export const getItemById = async (id) => {
     }
 }
 
-export const GetItemsByAuthor = async(author) => {
+export const getItemsByAuthor = async(author) => {
     const collectionRef = query(collection(firestoreDb, 'products'), where('author', '==', author))
     
     const querySnapshot = await getDocs(collectionRef)
@@ -40,4 +40,13 @@ export const GetItemsByAuthor = async(author) => {
     })
 
     return items   
+}
+
+export const insertOrderAndUpdateStocks = async (order) => {
+
+    const orderCollection = collection(firestoreDb, 'orders')
+
+    const newDocId = await addDoc(orderCollection, order)
+
+    return newDocId.id
 }

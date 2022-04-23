@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import ItemLIstContainerByFn from '../ItemListContainer/ItemListContainerByFn'
-import { GetItems, GetItemsByAuthor } from '../../services/items'
+import { getItems, getItemsByAuthor } from '../../services/items'
 
 const Home = () => {
     return (
@@ -12,16 +12,16 @@ const Home = () => {
                 </BrandHighlight>
             </HighlightHeader>
             <HighlightSet>
-                <ItemLIstContainerByFn fn={ GetItems } variant={2} title={"Most Popular"} />
+                <ItemLIstContainerByFn fn={ getItems } variant={2} title={"Most Popular"} />
             </HighlightSet>
             <HighlightSet>
-                <ItemLIstContainerByFn fn={ GetItems } param={"action"} variant={2} title={"Action mangas"} />
+                <ItemLIstContainerByFn fn={ getItems } param={"action"} variant={2} title={"Action mangas"} />
             </HighlightSet>
             <HighlightSet>
-                <ItemLIstContainerByFn fn={ GetItemsByAuthor } param={"Junji Ito"} variant={2} title={"Junji Ito Collection"} />
+                <ItemLIstContainerByFn fn={ getItemsByAuthor } param={"Junji Ito"} variant={2} title={"Junji Ito Collection"} />
             </HighlightSet>
             <HighlightSet>
-                <ItemLIstContainerByFn fn={ GetItemsByAuthor } param={"Makoto Yukimura"} variant={2} title={"Makoto Yukimura Collection"} />
+                <ItemLIstContainerByFn fn={ getItemsByAuthor } param={"Makoto Yukimura"} variant={2} title={"Makoto Yukimura Collection"} />
             </HighlightSet>
         </HomeWrapper>
     )

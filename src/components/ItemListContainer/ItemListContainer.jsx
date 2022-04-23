@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import Item from '../Item/Item'
 import styled from 'styled-components'
 import Loader from '../Loader/Loader'
-import { GetItems } from '../../services/items'
+import { getItems } from '../../services/items'
 
 
 import { Link, useParams } from 'react-router-dom'
@@ -17,7 +17,7 @@ const ItemListContainer = ({ greeting, variant }) => {
         fetchItems()
 
         async function fetchItems() {
-            const items = await GetItems(genre)
+            const items = await getItems(genre)
             setItems(items)
             setLoading(false)
         }

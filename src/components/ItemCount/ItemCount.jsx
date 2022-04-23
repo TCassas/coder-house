@@ -44,7 +44,6 @@ const ItemCount = ({ stock, initial, onAdd, alreadyInCart }) => {
                     />
                     <CartButton onClick={() => addOne()}>+</CartButton>
                 </CartControls>
-                {/* <CartButton onClick={() => onAdd(count)}>{`${ quantity ? "Add to the cart" : "Edit quantity in cart"}`}</CartButton>*/}
                 <CartButton onClick={() => onAdd(count)}>{!alreadyInCart ? 'Add to cart' : 'Edit quantity in cart'}</CartButton>
             </CartCount>
         </div>

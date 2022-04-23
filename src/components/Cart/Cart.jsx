@@ -2,14 +2,16 @@ import styled from 'styled-components'
 import CartItem from './CartItem'
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { firestoreDb } from '../../services/firebase'
+import { addDoc, collection } from 'firebase/firestore'
 
-const Cart = ({ items, getTotal }) => {
+const Cart = ({ items, getTotal, createOrder }) => {
     const [total, setTotal] = useState(0)
 
     useEffect(() => {
         setTotal(getTotal())
     }, [items])
-
+    
     if(items.length === 0) {
         return (
             <EmptyCart>
@@ -41,6 +43,13 @@ const Cart = ({ items, getTotal }) => {
                     { items.map( item => <CartItem key={ item.id } item={ item } />)}
                 </tbody>
             </CartItemTable>
+            <CartActions>
+                <BuyBotton
+                    onClick={() => createOrder()}
+                >
+                    Complete order
+                </BuyBotton>
+            </CartActions>
         </CartItemListWrapper>
 
     )
@@ -53,7 +62,10 @@ const CartItemTable = styled.table`
 `;
 
 const CartItemListWrapper = styled.main`
+    display: flex;
+    flex-direction: column;
     width: 100%;
+    gap: 10px;
 `
 
 const CartInfo = styled.div`
@@ -75,3 +87,19 @@ const EmptyCart = styled.section`
         width: 100%;
     }
 `
+
+const CartActions = styled.div`
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+`
+
+const BuyBotton = styled.button`
+    border: none;
+    color: white;
+    background-color: #009C5E;
+    padding: 5px 12px;
+    font-weight: bold;
+    font-size: 18px;
+    border-radius: 6px;
+`;

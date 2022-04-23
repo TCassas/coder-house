@@ -32,10 +32,20 @@ const CartItemTr = styled.tr`
         border: none;
         border-bottom: 1px solid gainsboro;
     }
+
+    td:nth-of-type(2), td:nth-of-type(4)  {
+        width: 140px;
+    }
+
+    td:nth-of-type(3) {
+        width: 10px;
+    }
 `
 
 const CartItemName = styled.td`
     text-align: left !important;
+    white-space:nowrap; 
+    text-overflow: ellipsis;
     a {
         color: #F03A17;
         font-weight: bold;
