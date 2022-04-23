@@ -18,7 +18,7 @@ const ItemDetailContainer = () => {
         }
 
         fetchItem()
-    }, [])
+    }, [id])
       
     return (
         <ItemDetailWrapper>
