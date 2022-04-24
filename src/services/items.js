@@ -1,4 +1,4 @@
-import { collection, doc, getDoc, getDocs, query, where, addDoc } from 'firebase/firestore'
+import { collection, doc, getDoc, getDocs, query, where, writeBatch, documentId, Timestamp } from 'firebase/firestore'
 import { firestoreDb } from './firebase'
 
 export const getItems = async (genre) => {
@@ -43,10 +43,44 @@ export const getItemsByAuthor = async(author) => {
 }
 
 export const insertOrderAndUpdateStocks = async (order) => {
+    const ids = order.cart.map(item => item.id)
+    
+    //Get docs from database and format them
+    const itemsRef = collection(firestoreDb, 'products')
+    const querySnapshot = await getDocs(query(itemsRef, where(documentId(), 'in', ids)))
+    const docs = querySnapshot.docs.map(doc => {
+        return { ...doc.data(), id: doc.id, ref: doc.ref }
+    })
 
-    const orderCollection = collection(firestoreDb, 'orders')
+    //Validate that every item has enough stock before the order is created
+    const itemsWithNoStock = order.cart.filter(item => {
+        return item.quantity > (docs.find(doc => doc.id == item.id).stock)
+    })
+    
+    //If there are no items in the cart with no stock, write batch
+    if(itemsWithNoStock.length == 0) {
+        const batch = writeBatch(firestoreDb)
 
-    const newDocId = await addDoc(orderCollection, order)
+        docs.forEach(doc => {
+            const orderQuantity = order.cart.find(item => item.id == doc.id).quantity
+            
+            batch.update(doc.ref, { stock: doc.stock -  orderQuantity})
+        })
 
-    return newDocId.id
+        //Add timestamp to the order
+        const orderRef = doc(collection(firestoreDb, 'orders'))
+        batch.set(orderRef, {
+            ...order,
+            date: Timestamp.fromDate(new Date())
+        })
+
+        batch.commit()
+
+        Promise.resolve(1)
+    } else {
+        Promise.reject({
+            reason: 'STOCK',
+            description: itemsWithNoStock
+        })
+    }
 }

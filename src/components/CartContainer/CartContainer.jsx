@@ -20,8 +20,6 @@ const CartContainer = () => {
             const orderId = await insertOrderAndUpdateStocks(order)
 
             console.log(orderId)
-
-            clearCart()
         }
 
     }
