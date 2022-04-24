@@ -28,7 +28,7 @@ export const getItemById = async (id) => {
 }
 
 export const getItemsByAuthor = async(author) => {
-    const collectionRef = query(collection(firestoreDb, 'products'), where('author', '===', author))
+    const collectionRef = query(collection(firestoreDb, 'products'), where('author', '==', author))
     
     const querySnapshot = await getDocs(collectionRef)
 
