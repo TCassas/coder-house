@@ -79,7 +79,7 @@ export const insertOrderAndUpdateStocks = async (order) => {
     } else {
         return Promise.reject({
             reason: 'STOCK',
-            description: itemsWithNoStock
+            description: itemsWithNoStock.map(item => item.name)
         })
     }
 }

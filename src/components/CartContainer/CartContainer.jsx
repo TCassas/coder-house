@@ -4,10 +4,12 @@ import { useContext, useState } from 'react'
 import CartContext from '../../context/CartContext'
 import { insertOrderAndUpdateStocks } from '../../services/items'
 import { Navigate } from 'react-router'
+import NotificationContext from '../../context/NotificationContext'
 
 const CartContainer = () => {
     const [orderId, setOrderId] = useState('')
     const { cart, getCartTotal } = useContext(CartContext)
+    const { addNotification } = useContext(NotificationContext)
 
     const onCreateOrder = () => {
         createOrder()
@@ -23,9 +25,10 @@ const CartContainer = () => {
                 const orderId = await insertOrderAndUpdateStocks(order)
     
                 setOrderId(orderId)
+                addNotification('Order completed succesfully!', 'success')
             } catch(error) {
                 if(error.reason === 'STOCK') {
-                    console.log('Items without stock', error.description)
+                    addNotification(`No stock avaible for: ${ error.description.toString() }`, 'warning')
                 }
             }
         }
