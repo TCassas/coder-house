@@ -8,7 +8,7 @@ import NotificationContext from '../../context/NotificationContext'
 
 const CartContainer = () => {
     const [orderId, setOrderId] = useState('')
-    const { cart, getCartTotal } = useContext(CartContext)
+    const { cart, getCartTotal, clearCart } = useContext(CartContext)
     const { addNotification } = useContext(NotificationContext)
 
     const onCreateOrder = () => {
@@ -26,6 +26,7 @@ const CartContainer = () => {
     
                 setOrderId(orderId)
                 addNotification('Order completed succesfully!', 'success')
+                clearCart()
             } catch(error) {
                 if(error.reason === 'STOCK') {
                     addNotification(`No stock avaible for: ${ error.description.toString() }`, 'warning')
