@@ -1,10 +1,12 @@
 import styled from 'styled-components'
 import Cart from '../Cart/Cart'
-import { useContext } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import CartContext from '../../context/CartContext'
 import { insertOrderAndUpdateStocks } from '../../services/items'
+import { Navigate } from 'react-router'
 
 const CartContainer = () => {
+    const [orderId, setOrderId] = useState('')
     const { cart, getCartTotal, clearCart } = useContext(CartContext)
 
     const onCreateOrder = () => {
@@ -16,17 +18,29 @@ const CartContainer = () => {
                 cart,
                 total: getCartTotal()
             }
+
+            try {
+                const orderId = await insertOrderAndUpdateStocks(order)
+
+                console.log(orderId.id)
     
-            const orderId = await insertOrderAndUpdateStocks(order)
-
-            console.log(orderId)
+                setOrderId(orderId)
+            } catch(error) {
+                if(error.reason == 'STOCK') {
+                    console.log('Items without stock', error.description)
+                }
+            }
         }
-
     }
 
     return (
         <CartContainerWrapper>
-            <Cart items={ cart } getTotal={ getCartTotal } createOrder={ onCreateOrder } />
+            { !orderId ?
+                <Cart items={ cart } getTotal={ getCartTotal } createOrder={ onCreateOrder } />
+            :
+                <Navigate to={`/orders/${orderId}`} />
+            }
+            
         </CartContainerWrapper>
     )
 }

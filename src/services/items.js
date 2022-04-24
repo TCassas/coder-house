@@ -1,4 +1,4 @@
-import { collection, doc, getDoc, getDocs, query, where, writeBatch, documentId, Timestamp } from 'firebase/firestore'
+import { collection, doc, getDoc, getDocs, query, where, writeBatch, documentId, Timestamp, addDoc } from 'firebase/firestore'
 import { firestoreDb } from './firebase'
 
 export const getItems = async (genre) => {
@@ -66,19 +66,18 @@ export const insertOrderAndUpdateStocks = async (order) => {
             
             batch.update(doc.ref, { stock: doc.stock -  orderQuantity})
         })
+        batch.commit()
 
         //Add timestamp to the order
-        const orderRef = doc(collection(firestoreDb, 'orders'))
-        batch.set(orderRef, {
+        const orderRef = collection(firestoreDb, 'orders')
+        const { id } = await addDoc(orderRef, {
             ...order,
             date: Timestamp.fromDate(new Date())
         })
 
-        batch.commit()
-
-        Promise.resolve(1)
+        return Promise.resolve(id)
     } else {
-        Promise.reject({
+        return Promise.reject({
             reason: 'STOCK',
             description: itemsWithNoStock
         })
