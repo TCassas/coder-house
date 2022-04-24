@@ -28,7 +28,7 @@ export const getItemById = async (id) => {
 }
 
 export const getItemsByAuthor = async(author) => {
-    const collectionRef = query(collection(firestoreDb, 'products'), where('author', '==', author))
+    const collectionRef = query(collection(firestoreDb, 'products'), where('author', '===', author))
     
     const querySnapshot = await getDocs(collectionRef)
 
@@ -54,15 +54,15 @@ export const insertOrderAndUpdateStocks = async (order) => {
 
     //Validate that every item has enough stock before the order is created
     const itemsWithNoStock = order.cart.filter(item => {
-        return item.quantity > (docs.find(doc => doc.id == item.id).stock)
+        return item.quantity > (docs.find(doc => doc.id === item.id).stock)
     })
     
     //If there are no items in the cart with no stock, write batch
-    if(itemsWithNoStock.length == 0) {
+    if(itemsWithNoStock.length === 0) {
         const batch = writeBatch(firestoreDb)
 
         docs.forEach(doc => {
-            const orderQuantity = order.cart.find(item => item.id == doc.id).quantity
+            const orderQuantity = order.cart.find(item => item.id === doc.id).quantity
             
             batch.update(doc.ref, { stock: doc.stock -  orderQuantity})
         })

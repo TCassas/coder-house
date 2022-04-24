@@ -17,8 +17,6 @@ const Order = () => {
 
             setOrder(order)
             setLoading(false)
-
-            console.log(order)
         }
     }, [id])
 

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import styled from "styled-components";
 
 const ItemCount = ({ stock, initial, onAdd, alreadyInCart }) => {
@@ -26,10 +26,6 @@ const ItemCount = ({ stock, initial, onAdd, alreadyInCart }) => {
             setCount(parseInt(value))
         }
     }
-
-    useEffect(() => {
-        console.log(count)
-    }, [count])
 
     return (
         <div>

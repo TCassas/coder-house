@@ -1,13 +1,13 @@
 import styled from 'styled-components'
 import Cart from '../Cart/Cart'
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useState } from 'react'
 import CartContext from '../../context/CartContext'
 import { insertOrderAndUpdateStocks } from '../../services/items'
 import { Navigate } from 'react-router'
 
 const CartContainer = () => {
     const [orderId, setOrderId] = useState('')
-    const { cart, getCartTotal, clearCart } = useContext(CartContext)
+    const { cart, getCartTotal } = useContext(CartContext)
 
     const onCreateOrder = () => {
         createOrder()
@@ -21,12 +21,10 @@ const CartContainer = () => {
 
             try {
                 const orderId = await insertOrderAndUpdateStocks(order)
-
-                console.log(orderId.id)
     
                 setOrderId(orderId)
             } catch(error) {
-                if(error.reason == 'STOCK') {
+                if(error.reason === 'STOCK') {
                     console.log('Items without stock', error.description)
                 }
             }
