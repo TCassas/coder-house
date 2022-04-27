@@ -5,6 +5,7 @@ import ItemListContainer from './components/ItemListContainer/ItemListContainer.
 import Footer from './components/Footer/Footer.jsx'
 import Home from './components/Home/Home.jsx'
 import Order from './components/order/Order.jsx'
+import CheckoutContainer from './components/Checkout/CheckoutContainer';
 import { CartContextProvider } from './context/CartContext.jsx'
 import { NotificationContextProvider } from './context/NotificationContext.jsx'
 import './App.css';
@@ -24,6 +25,7 @@ function App() {
               <Route path='/manga/:id' element={ <ItemDetailContainer  />} />
               <Route path='/genre/:genre' element={ <ItemListContainer variant={3} />} />
               <Route path='/orders/:id' element={ <Order /> } />
+              <Route path='/checkout' element={ <CheckoutContainer /> } />
             </Routes>
             <Footer />
           </BrowserRouter>

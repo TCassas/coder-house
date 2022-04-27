@@ -2,10 +2,8 @@ import styled from 'styled-components'
 import CartItem from './CartItem'
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { firestoreDb } from '../../services/firebase'
-import { addDoc, collection } from 'firebase/firestore'
 
-const Cart = ({ items, getTotal, createOrder }) => {
+const Cart = ({ items, getTotal }) => {
     const [total, setTotal] = useState(0)
 
     useEffect(() => {
@@ -44,11 +42,11 @@ const Cart = ({ items, getTotal, createOrder }) => {
                 </tbody>
             </CartItemTable>
             <CartActions>
-                <BuyBotton
-                    onClick={() => createOrder()}
-                >
-                    Complete order
-                </BuyBotton>
+                <Link to={'/checkout'}>
+                    <BuyBotton>
+                        Proceed to checkout
+                    </BuyBotton>
+                </Link>
             </CartActions>
         </CartItemListWrapper>
 
@@ -102,4 +100,4 @@ const BuyBotton = styled.button`
     font-weight: bold;
     font-size: 18px;
     border-radius: 6px;
-`;
+`
