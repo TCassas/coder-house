@@ -1,4 +1,4 @@
-import { useState, useEffect, createContext } from 'react'
+import { useState, createContext } from 'react'
 import styled from 'styled-components'
 
 const NotificationContext = createContext()
@@ -6,7 +6,6 @@ const NotificationContext = createContext()
 export const NotificationContextProvider = ({ children }) => {
     const [text, setText] = useState('')
     const [severity, setSeverity] = useState('')
-    const [show, setShow] = useState(false)
 
     const addNotification = (text, severity) => {
         setText(text)

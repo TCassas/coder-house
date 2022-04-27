@@ -18,6 +18,41 @@ export const getItems = async (genre) => {
     return items
 }
 
+export const searchItems = async (search) => {
+    let querySnapshot = null;
+
+    let collectionRef = query(
+        collection(firestoreDb, 'products'),
+        where('name', '==', search),
+    )
+    querySnapshot = await getDocs(collectionRef)
+
+    if(querySnapshot?.docs.length === 0) {
+        collectionRef = query(
+            collection(firestoreDb, 'products'),
+            where('author', '==', search)
+        )
+        querySnapshot = await getDocs(collectionRef)
+    }
+
+    if(querySnapshot?.docs.length === 0) {
+        collectionRef = query(
+            collection(firestoreDb, 'products'),
+            where('genres', 'array-contains', search)
+        )
+        querySnapshot = await getDocs(collectionRef)
+    }
+
+    const items = querySnapshot?.docs.map(doc => {
+        return {
+            id: doc.id,
+            ...doc.data()
+        }
+    })
+
+    return items
+}
+
 export const getItemById = async (id) => {
     const docSnapshot = await getDoc(doc(firestoreDb, 'products', id))
 

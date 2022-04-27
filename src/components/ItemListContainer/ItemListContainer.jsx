@@ -2,22 +2,37 @@ import { useState, useEffect } from 'react'
 import Item from '../Item/Item'
 import styled from 'styled-components'
 import Loader from '../Loader/Loader'
-import { getItems } from '../../services/items'
-
-
-import { Link, useParams } from 'react-router-dom'
+import { getItems, searchItems } from '../../services/items'
+import { Link, useParams, useSearchParams } from 'react-router-dom'
 import "./ItemListContainer.css"
 
-const ItemListContainer = ({ greeting, variant }) => {
+const ItemListContainer = ({ variant }) => {
     const [items, setItems] = useState([])
     const [loading, setLoading] = useState(true)
     const { genre } = useParams()
+    const [searchParams, setSearchParams] = useSearchParams()
+
 
     useEffect(() => {
-        fetchItems()
+        genre && fetchItems()
 
         async function fetchItems() {
-            const items = await getItems(genre)
+                const items = await getItems(genre)
+                await setItems(items)
+                setLoading(false)
+        }
+
+        return (() => {
+            setItems([])
+            setLoading(true)
+        })
+    }, [genre])
+
+    useEffect(() => {
+        searchParams && fetchItems()
+
+        async function fetchItems() {
+            const items = await searchItems(searchParams.get("q"))
             setItems(items)
             setLoading(false)
         }
@@ -26,7 +41,7 @@ const ItemListContainer = ({ greeting, variant }) => {
             setItems([])
             setLoading(true)
         })
-    }, [genre])
+    }, [searchParams])
 
     return (
         <ItemsContainer className="itemListContainer">

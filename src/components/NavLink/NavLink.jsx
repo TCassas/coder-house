@@ -1,7 +1,6 @@
 import "./NavLink.css"
 import { HiChevronDown, HiChevronUp } from "react-icons/hi";
 import { Link } from "react-router-dom";
-import { useEffect } from 'react'
 
 const Navlink = ({ href, text, droppable, setShowDrop, showDrop }) => {
     
