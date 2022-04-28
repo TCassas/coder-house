@@ -1,29 +1,32 @@
 import styled from 'styled-components'
 import ItemLIstContainerByFn from '../ItemListContainer/ItemListContainerByFn'
 import { getItems, getItemsByAuthor } from '../../services/items'
+import { motion } from 'framer-motion'
 
 const Home = () => {
     return (
-        <HomeWrapper>
-            <HighlightHeader>
-                <BrandHighlight>
-                    <h1>Tengu</h1>
-                    <strong>Manga Store</strong>
-                </BrandHighlight>
-            </HighlightHeader>
-            <HighlightSet>
-                <ItemLIstContainerByFn fn={ getItems } variant={2} title={"Most Popular"} />
-            </HighlightSet>
-            <HighlightSet>
-                <ItemLIstContainerByFn fn={ getItems } param={"action"} variant={2} title={"Action mangas"} />
-            </HighlightSet>
-            <HighlightSet>
-                <ItemLIstContainerByFn fn={ getItemsByAuthor } param={"Junji Ito"} variant={2} title={"Junji Ito Collection"} />
-            </HighlightSet>
-            <HighlightSet>
-                <ItemLIstContainerByFn fn={ getItemsByAuthor } param={"Makoto Yukimura"} variant={2} title={"Makoto Yukimura Collection"} />
-            </HighlightSet>
-        </HomeWrapper>
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+            <HomeWrapper>
+                <HighlightHeader>
+                    <BrandHighlight>
+                        <h1>Tengu</h1>
+                        <strong>Manga Store</strong>
+                    </BrandHighlight>
+                </HighlightHeader>
+                <HighlightSet>
+                    <ItemLIstContainerByFn fn={ getItems } variant={2} title={"Most Popular"} />
+                </HighlightSet>
+                <HighlightSet>
+                    <ItemLIstContainerByFn fn={ getItems } param={"action"} variant={2} title={"Action mangas"} />
+                </HighlightSet>
+                <HighlightSet>
+                    <ItemLIstContainerByFn fn={ getItemsByAuthor } param={"Junji Ito"} variant={2} title={"Junji Ito Collection"} />
+                </HighlightSet>
+                <HighlightSet>
+                    <ItemLIstContainerByFn fn={ getItemsByAuthor } param={"Makoto Yukimura"} variant={2} title={"Makoto Yukimura Collection"} />
+                </HighlightSet>
+            </HomeWrapper>
+        </motion.div>
     )
 }
 

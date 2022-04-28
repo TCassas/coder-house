@@ -14,12 +14,12 @@ const ItemListContainer = ({ variant }) => {
 
 
     useEffect(() => {
-        genre && fetchItems()
+        fetchItems()
 
         async function fetchItems() {
-                const items = await getItems(genre)
-                await setItems(items)
-                setLoading(false)
+            const items = await getItems(genre)
+            await setItems(items)
+            setLoading(false)
         }
 
         return (() => {
@@ -29,7 +29,7 @@ const ItemListContainer = ({ variant }) => {
     }, [genre])
 
     useEffect(() => {
-        searchParams && fetchItems()
+        searchParams.get("q") && fetchItems()
 
         async function fetchItems() {
             const items = await searchItems(searchParams.get("q"))

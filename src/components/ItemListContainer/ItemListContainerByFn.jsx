@@ -39,10 +39,12 @@ const ItemLIstContainerByProp = ({ fn, param, variant, title }) => {
                             dragConstraints={{right: 0, left: (items.length - 1) * -314.6}}
                         >
                             <Items variant={variant}>
-                                {items.map(item =>
-                                    <Link to={`/manga/${item.id}`} key={item.id}>
-                                        <Item variant={variant} data={item}  key={item.id} />
-                                    </Link>
+                                {items.map((item, i) =>
+                                    <motion.div key={item.id} initial={{ opacity: 0 }} animate={{ opacity: 1, transition: {delay: 0.1 * i} }} exit={{ opacity: 0 }}>
+                                        <Link to={`/manga/${item.id}`}>
+                                            <Item variant={variant} data={item}  key={item.id} />
+                                        </Link>
+                                    </motion.div>
                                 )}
                             </Items>
                         </motion.div>
