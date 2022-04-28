@@ -33,8 +33,11 @@ const Navbar = () => {
                 <Navlink href={'/manga'} text="Catalog" />
                 <NavCartButton />
             </div>
+            <div className="mobile-cart">
+                <NavCartButton />
+            </div>
             <div className="mobile-menu-container">
-                <HiMenu className="mobile-menu-icon"/>
+                <HiMenu className="mobile-menu-icon" onClick={ () => setShowDrop(!showDrop) } />
             </div>
             {showDrop && <Categories setShowDrop={ setShowDrop } genres={ genres } />}
         </NavBarContainer>
