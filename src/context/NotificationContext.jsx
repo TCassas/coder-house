@@ -20,6 +20,9 @@ export const NotificationContextProvider = ({ children }) => {
             case 'error':
                 setSeverity('#E82802')
                 break;
+            default:
+                setSeverity('#E8A91A')
+                
         }
 
         setTimeout(() => {

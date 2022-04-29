@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import Item from '../Item/Item'
 import Dummy from '../Item/Dummy'
 import styled from 'styled-components'
-import Loader from '../Loader/Loader'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import "./ItemListContainer.css"
