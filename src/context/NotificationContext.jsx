@@ -32,7 +32,6 @@ export const NotificationContextProvider = ({ children }) => {
         <NotificationContext.Provider value={{
             addNotification
         }}>
-
             <NotificationContainer severity={ severity }>
                 <strong>{ text }</strong>
             </NotificationContainer>

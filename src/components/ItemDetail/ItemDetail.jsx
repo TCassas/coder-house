@@ -4,6 +4,7 @@ import ItemCount from '../ItemCount/ItemCount'
 import { Link } from 'react-router-dom'
 import { HiOutlineHeart, HiArrowCircleRight, HiOutlineX } from 'react-icons/hi'
 import { useState, useContext } from 'react'
+import { motion } from 'framer-motion'
 import CartContext from '../../context/CartContext'
 
 const ItemDetail = ({ item })  => {
@@ -24,52 +25,56 @@ const ItemDetail = ({ item })  => {
     }
 
     return (
-        <ItemDetailContainer>
-            <ItemDetailLeft>
-                <Book
-                    size={3}
-                    thickness={3}
-                    enableZoom={false}
-                    cover={`/imgs/${img}`}
-                />
-            </ItemDetailLeft>
-            <ItemDetailRight>
-                <h1>{ name }</h1>
-                <ItemLike>
-                    <HiOutlineHeart />
-                </ItemLike>
-                <strong><span>Price</span>: ${ price }</strong>
-                <strong><span>Author</span>: { author }</strong>
-                <strong><span>Series</span>: { info }</strong>
-                <ItemDescription>
-                    <strong><span>Description</span></strong>
-                    <p>{ description }</p>
-                </ItemDescription>
-                <strong><span>Audience</span>: { audience }</strong>
-                <strong><span>Genres</span></strong>
-                <ItemGenres>
-                    { genres.map(genre =>
-                        <Link key={ genre } to={`/genre/${genre}`}>
-                            <ItemGenre>{ genre }</ItemGenre>
-                        </Link>
-                    )}
-                </ItemGenres>
-                <ItemControls both={ countInCart > 0 }>
-                    <ItemCount stock={ stock } initial={ countInCart } onAdd={ onAdd } alreadyInCart={ countInCart > 0 } />
-                    { countInCart > 0 &&
-                        <GoToCart>
-                            <Link to={'/cart'}>Go to cart <HiArrowCircleRight /></Link>
-                            <RemoveFromCart
-                                onClick={() => onRemove()}
-                            >
-                                <span>Remove from cart</span>
-                                <HiOutlineX />
-                            </RemoveFromCart>
-                        </GoToCart>
-                    }
-                </ItemControls>
-            </ItemDetailRight>
-        </ItemDetailContainer>
+            <ItemDetailContainer>
+                <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0, transition: {duration: 0.5} }} exit={{ opacity: 0, x: -20 }} >
+                    <ItemDetailLeft>
+                        <Book
+                            size={3}
+                            thickness={3}
+                            enableZoom={false}
+                            cover={`/imgs/${img}`}
+                        />
+                    </ItemDetailLeft>
+                </motion.div>
+                <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0, transition: {duration: 0.5} }} exit={{ opacity: 0, x: 20 }} >
+                    <ItemDetailRight>
+                        <h1>{ name }</h1>
+                        <ItemLike>
+                            <HiOutlineHeart />
+                        </ItemLike>
+                        <strong><span>Price</span>: ${ price }</strong>
+                        <strong><span>Author</span>: { author }</strong>
+                        <strong><span>Series</span>: { info }</strong>
+                        <ItemDescription>
+                            <strong><span>Description</span></strong>
+                            <p>{ description }</p>
+                        </ItemDescription>
+                        <strong><span>Audience</span>: { audience }</strong>
+                        <strong><span>Genres</span></strong>
+                        <ItemGenres>
+                            { genres.map(genre =>
+                                <Link key={ genre } to={`/genre/${genre}`}>
+                                    <ItemGenre>{ genre }</ItemGenre>
+                                </Link>
+                            )}
+                        </ItemGenres>
+                        <ItemControls both={ countInCart > 0 }>
+                            <ItemCount stock={ stock } initial={ countInCart } onAdd={ onAdd } alreadyInCart={ countInCart > 0 } />
+                            { countInCart > 0 &&
+                                <GoToCart>
+                                    <Link to={'/cart'}>Go to cart <HiArrowCircleRight /></Link>
+                                    <RemoveFromCart
+                                        onClick={() => onRemove()}
+                                    >
+                                        <span>Remove from cart</span>
+                                        <HiOutlineX />
+                                    </RemoveFromCart>
+                                </GoToCart>
+                            }
+                        </ItemControls>
+                    </ItemDetailRight>
+                </motion.div>
+            </ItemDetailContainer>
     )
 }
 
@@ -92,6 +97,7 @@ const ItemDetailContainer = styled.section`
 
 const ItemDetailLeft = styled.section`
     width: 100%;
+    height: 100%;
     background-color: #e5e5f7;
     border-radius: 10px;
     background: radial-gradient(circle, transparent 20%, #e5e5f7 20%, #e5e5f7 80%, transparent 80%, transparent), radial-gradient(circle, transparent 20%, #e5e5f7 20%, #e5e5f7 80%, transparent 80%, transparent) 25px 25px, linear-gradient(#F03A17 2px, transparent 2px) 0 -1px, linear-gradient(90deg, #F03A17 2px, #e5e5f7 2px) -1px 0;

@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import CartItem from './CartItem'
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { motion } from 'framer-motion'
 
 const Cart = ({ items, getTotal }) => {
     const [total, setTotal] = useState(0)
@@ -9,47 +10,61 @@ const Cart = ({ items, getTotal }) => {
     useEffect(() => {
         setTotal(getTotal())
     }, [items])
+
+    const AnimatedCart = ({ children }) => {
+        return (
+            <motion.div
+                style={{ overflowX: 'hidden', width: '100%' }}
+                initial={{ opacity: 0 }} animate={{ opacity: 1, transition: {duration: 0.8} }} exit={{ opacity: 0 }}
+            >
+                { children }
+            </motion.div>
+        )
+    }
     
     if(items.length === 0) {
         return (
-            <EmptyCart>
-                <picture>
-                    <h1>Such an empty cart</h1>
-                    <p>Go search through our <Link to='/manga'>catalog</Link> and add something to the cart!</p>
-                    <img src='imgs/empty-cart.png' />
-                </picture>
-            </EmptyCart>
+            <AnimatedCart>
+                <EmptyCart>
+                    <picture>
+                        <h1>Such an empty cart</h1>
+                        <p>Go search through our <Link to='/manga'>catalog</Link> and add something to the cart!</p>
+                        <img src='imgs/empty-cart.png' />
+                    </picture>
+                </EmptyCart>
+            </AnimatedCart>
         )
     }
 
     return (
-        <CartItemListWrapper>
-            <CartInfo>
-                <h1>Cart</h1>
-                <p>Total: <strong>${total}</strong></p>
-            </CartInfo>
-            <CartItemTable>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Unitary price</th>
-                        <th>Quantity</th>
-                        <th>Total price</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    { items.map( item => <CartItem key={ item.id } item={ item } />)}
-                </tbody>
-            </CartItemTable>
-            <CartActions>
-                <Link to={'/checkout'}>
-                    <BuyBotton>
-                        Proceed to checkout
-                    </BuyBotton>
-                </Link>
-            </CartActions>
-        </CartItemListWrapper>
-
+        <AnimatedCart>
+            <CartItemListWrapper>
+                <CartInfo>
+                    <h1>Cart</h1>
+                    <p>Total: <strong>${total}</strong></p>
+                </CartInfo>
+                <CartItemTable>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Unitary price</th>
+                            <th>Quantity</th>
+                            <th>Total price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        { items.map( item => <CartItem key={ item.id } item={ item } />)}
+                    </tbody>
+                </CartItemTable>
+                <CartActions>
+                    <Link to={'/checkout'}>
+                        <BuyBotton>
+                            Proceed to checkout
+                        </BuyBotton>
+                    </Link>
+                </CartActions>
+            </CartItemListWrapper>
+        </AnimatedCart>
     )
 }
 

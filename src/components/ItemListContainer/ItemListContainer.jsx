@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import Loader from '../Loader/Loader'
 import { getItems, searchItems } from '../../services/items'
 import { Link, useParams, useSearchParams } from 'react-router-dom'
+import { motion } from 'framer-motion'
 import "./ItemListContainer.css"
 
 const ItemListContainer = ({ variant }) => {
@@ -50,10 +51,12 @@ const ItemListContainer = ({ variant }) => {
             :    
                 (items.length > 0 ?
                     <Items variant={variant}>
-                            {items.map(item =>
-                                <Link to={`/manga/${item.id}`} key={item.id}>
-                                    <Item variant={variant} data={item} key={item.id} />
-                                </Link>
+                            {items.map((item, i) =>
+                                <motion.div key={item.id} initial={{ opacity: 0 }} animate={{ opacity: 1, transition: {delay: 0.1 * i} }} exit={{ opacity: 0 }}>
+                                    <Link to={`/manga/${item.id}`} key={item.id}>
+                                        <Item variant={variant} data={item} key={item.id} />
+                                    </Link>
+                                </motion.div>
                             )}
                     </Items>
                 :

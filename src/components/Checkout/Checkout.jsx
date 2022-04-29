@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { useState } from 'react'
+import { motion } from 'framer-motion'
 
 const Checkout = ({ items, total, onSubmit }) => {
     const [name, setName] = useState('')
@@ -7,41 +8,43 @@ const Checkout = ({ items, total, onSubmit }) => {
     const [phone, setPhone] = useState('')
 
     return (
-        <CheckoutContainer>
-            <CheckoutForm>
-                <h1>Complete with your personal data</h1>
-                <div>
-                    <label>Name</label>
-                    <input type='text'
-                        onChange={(e) => setName(e.target.value)}
-                    />
-                </div>
-                <div>
-                    <label>Email:</label>
-                    <input type='email'
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-                </div>
-                <div>
-                    <label>Phone number</label>
-                    <input type='phone'
-                        onChange={(e) => setPhone(e.target.value)}
-                    />
-                </div>
-            </CheckoutForm>
-            <QuickSummary>
-                <strong>Summary</strong>
-                <div>
-                    {items.map(item => <p id={ item.id }>${ item.price } (x{ item.quantity }) { item.name }</p>)}
-                </div>
-                <strong>Total <span>${ total }</span></strong>
-            </QuickSummary>
-            <BuyBotton
-                onClick={() => onSubmit({ name, email, phone })}
-            >
-                Complete order
-            </BuyBotton>
-        </CheckoutContainer>
+        <motion.div initial={{ opacity: 0, x: 10 }} animate={{ opacity: 1, x: 0, transition: {duration: 0.3, delay: 0.8} }} exit={{ opacity: 0, x: -10 }} >
+            <CheckoutContainer>
+                <CheckoutForm>
+                    <h1>Complete with your personal data</h1>
+                    <div>
+                        <label>Name</label>
+                        <input type='text'
+                            onChange={(e) => setName(e.target.value)}
+                        />
+                    </div>
+                    <div>
+                        <label>Email:</label>
+                        <input type='email'
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
+                    </div>
+                    <div>
+                        <label>Phone number</label>
+                        <input type='phone'
+                            onChange={(e) => setPhone(e.target.value)}
+                        />
+                    </div>
+                </CheckoutForm>
+                <QuickSummary>
+                    <strong>Summary</strong>
+                    <div>
+                        {items.map(item => <p id={ item.id }>${ item.price } (x{ item.quantity }) { item.name }</p>)}
+                    </div>
+                    <strong>Total <span>${ total }</span></strong>
+                </QuickSummary>
+                <BuyBotton
+                    onClick={() => onSubmit({ name, email, phone })}
+                >
+                    Complete order
+                </BuyBotton>
+            </CheckoutContainer>
+        </motion.div>
     )
 }
 
@@ -52,6 +55,7 @@ const CheckoutContainer = styled.section`
     display: grid;
     grid-template-columns: 1fr 0.6fr;
     gap: 30px;
+    overflow: hidden;
 
     @media (max-width: 760px) {
         grid-template-columns: 1fr;
@@ -75,7 +79,7 @@ const CheckoutForm = styled.form`
         transition: 0.1s;
         font-size: 14px;
         box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.25);
-        background-color: #ffffff;
+        background-color: rgb(243, 246, 252);
         border-radius: 2px;
 
         &:focus {

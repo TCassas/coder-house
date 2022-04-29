@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import styled from 'styled-components'
 import Loader from '../Loader/Loader'
 import { getOrderById } from '../../services/orders'
+import { motion } from 'framer-motion'
 
 const Order = () => {
     const [order, setOrder] = useState('')
@@ -21,30 +22,32 @@ const Order = () => {
     }, [id])
 
     return (
-        <OrderWrapper>
-            { !loading ?
-                <OrderContainer>
-                    <h1>Order id: { order.id }</h1>
-                    <p>Date: { order.date.getDate() }/{ order.date.getMonth() + 1 }/{ order.date.getFullYear() }</p>
-                    <p>Time: { order.date.getHours() }:{ order.date.getMinutes() }</p>
-                    <p>Summary</p>
-                    <ol>
-                        <OrderSummary>
-                            { order.cart.map(item => <li> <strong>{ item.name } { item.info }</strong> (x{ item.quantity } units) ${ item.price }</li>) }
-                        </OrderSummary>
-                    </ol>
-                    <OrderTotal>Total: ${ order.total }</OrderTotal>
-                    <OrderBuyerInfo>
-                        <strong>Buyer info</strong>
-                        <p>Name: { order.buyer.name }</p>
-                        <p>Email: { order.buyer.email }</p>
-                        <p>Phone: { order.buyer.phone }</p>
-                    </OrderBuyerInfo>
-                </OrderContainer>
-            :
-                <Loader />
-            }
-        </OrderWrapper>
+        <motion.div initial={{ opacity: 0, x: 10 }} animate={{ opacity: 1, x: 0, transition: {duration: 0.3, delay: 0.8} }} exit={{ opacity: 0, x: -10 }} >
+            <OrderWrapper>
+                { !loading ?
+                    <OrderContainer>
+                        <h1>Order id: { order.id }</h1>
+                        <p>Date: { order.date.getDate() }/{ order.date.getMonth() + 1 }/{ order.date.getFullYear() }</p>
+                        <p>Time: { order.date.getHours() }:{ order.date.getMinutes() }</p>
+                        <p>Summary</p>
+                        <ol>
+                            <OrderSummary>
+                                { order.cart.map(item => <li> <strong>{ item.name } { item.info }</strong> (x{ item.quantity } units) ${ item.price }</li>) }
+                            </OrderSummary>
+                        </ol>
+                        <OrderTotal>Total: ${ order.total }</OrderTotal>
+                        <OrderBuyerInfo>
+                            <strong>Buyer info</strong>
+                            <p>Name: { order.buyer.name }</p>
+                            <p>Email: { order.buyer.email }</p>
+                            <p>Phone: { order.buyer.phone }</p>
+                        </OrderBuyerInfo>
+                    </OrderContainer>
+                :
+                    <Loader />
+                }
+            </OrderWrapper>
+        </motion.div>
     )
 }
 

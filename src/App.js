@@ -1,15 +1,10 @@
-import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer'
-import CartContainer from './components/CartContainer/CartContainer'
-import NavBar from './components/NavBar/NavBar';
-import ItemListContainer from './components/ItemListContainer/ItemListContainer.jsx'
-import Footer from './components/Footer/Footer.jsx'
-import Home from './components/Home/Home.jsx'
-import Order from './components/order/Order.jsx'
-import CheckoutContainer from './components/Checkout/CheckoutContainer';
+import NavBar from './components/NavBar/NavBar'
+import Footer from './components/Footer/Footer'
+import Routes from './components/Routes/Routes'
 import { CartContextProvider } from './context/CartContext.jsx'
 import { NotificationContextProvider } from './context/NotificationContext.jsx'
 import './App.css';
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom'
 
 function App() {
   return (
@@ -18,15 +13,7 @@ function App() {
         <CartContextProvider >
           <BrowserRouter>
             <NavBar />
-            <Routes>
-              <Route path='/' element={ <Home /> } />
-              <Route path='/cart' element={ <CartContainer />} />
-              <Route path='/manga' element={ <ItemListContainer variant={3} />} />
-              <Route path='/manga/:id' element={ <ItemDetailContainer  />} />
-              <Route path='/genre/:genre' element={ <ItemListContainer variant={3} />} />
-              <Route path='/orders/:id' element={ <Order /> } />
-              <Route path='/checkout' element={ <CheckoutContainer /> } />
-            </Routes>
+            <Routes />
             <Footer />
           </BrowserRouter>
         </CartContextProvider>
