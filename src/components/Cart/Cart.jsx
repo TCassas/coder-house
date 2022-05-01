@@ -3,7 +3,7 @@ import CartItem from './CartItem'
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import Button from '../standar/Button'
+import Button from '../Standard/Button'
 
 const Cart = ({ items, getTotal }) => {
     const [total, setTotal] = useState(0)

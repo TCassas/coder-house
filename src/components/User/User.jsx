@@ -6,7 +6,7 @@ import OrderListContainer from '../OrderListContainer/OrderListContainer'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { getLikedItems } from '../../services/likes'
-import Button from '../standar/Button'
+import Button from '../Standard/Button'
 
 const User = () => {
     const { user, logout, isLoggedIn } = useContext(UserContext)
