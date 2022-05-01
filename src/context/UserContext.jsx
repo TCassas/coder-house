@@ -12,6 +12,7 @@ export const UserContextProvider = ({ children }) => {
         onAuthStateChanged(auth, user => {
             if(user) {
                 setIsLoggedIn(true)
+                setUser(user)
             } else {
                 setIsLoggedIn(false)
             }
@@ -29,32 +30,17 @@ export const UserContextProvider = ({ children }) => {
     const loginWithEmailAndPassword = async (email, password) => {
         const userCredentials = await signInWithEmailAndPassword(auth, email, password)
 
-        if(userCredentials.user) {
-            const user = { email: userCredentials.user.email, username: userCredentials.user.email.substring(0, userCredentials.user.email.indexOf('@')) }
-            setUser(user)
-
-            localStorage.setItem('user', JSON.stringify(user))
-        }
-
         return userCredentials
     }
 
     const registerWithEmailAndPassword = async (email, password) => {
         const userCredentials = await createUserWithEmailAndPassword(auth, email, password)
-
-        if(userCredentials.user) {
-            const user = { email: userCredentials.user.email, username: userCredentials.user.email.substring(0, userCredentials.user.email.indexOf('@')) }
-            setUser(user)
-
-            localStorage.setItem('user', JSON.stringify(user))
-        }
         
         return userCredentials
     }
 
     const logout = async () => {
         await signOut(auth)
-        localStorage.removeItem('user')
         setUser({})
     }
 

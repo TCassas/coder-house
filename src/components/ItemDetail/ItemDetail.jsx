@@ -10,6 +10,7 @@ import CartContext from '../../context/CartContext'
 const ItemDetail = ({ item })  => {
     const { id, author, img, info, name, price, stock, description, audience, genres, quantity } = item
     const { addItem, removeItem } = useContext(CartContext)
+    
     const [countInCart, setCountInCart] = useState(quantity)
 
     const onAdd = (quantity) => {

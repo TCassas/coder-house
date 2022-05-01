@@ -12,7 +12,7 @@ const User = () => {
         <motion.div initial={{ opacity: 0, }} animate={{ opacity: 1, transition: {duration: 0.3, delay: 0.8} }} exit={{ opacity: 0 }} >
             <UserWrapper>
                 <UserHeader>
-                    <h1> {user.username}'s page </h1>
+                    <h1> {user.email}'s page </h1>
                     <Link to='/'>
                         <LogoutButton
                             onClick={() => logout()}
