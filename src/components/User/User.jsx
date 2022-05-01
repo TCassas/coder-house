@@ -6,7 +6,7 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
 const User = () => {
-    const { user, logout } = useContext(UserContext)
+    const { user, logout, isLoggedIn } = useContext(UserContext)
 
     return (
         <motion.div initial={{ opacity: 0, }} animate={{ opacity: 1, transition: {duration: 0.3, delay: 0.8} }} exit={{ opacity: 0 }} >
@@ -20,7 +20,7 @@ const User = () => {
                     </Link>
                 </UserHeader>
                 <strong>My orders</strong>
-                <OrderListContainer user={user} />
+                <OrderListContainer user={ user } isLoggedIn={ isLoggedIn } />
             </UserWrapper>
         </motion.div>
     )

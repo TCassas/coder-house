@@ -15,6 +15,14 @@ const Categories = ({ setShowDrop, genres }) => {
                         )}
                     </CategoriesList>
                 </CategoriesColumn>
+                <CategoriesColumn>
+                    <Link
+                        to='/manga'
+                        onClick={() => setShowDrop()}
+                    >
+                        <strong>All mangas</strong>
+                    </Link>
+                </CategoriesColumn>
             </CategoriesContainer>
         </CategoriesWrapper>
     )

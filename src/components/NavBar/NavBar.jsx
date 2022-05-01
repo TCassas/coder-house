@@ -13,7 +13,7 @@ const Navbar = () => {
     const [genres, setGenres] = useState([])
     const [showDrop, setShowDrop] = useState(false)
     const [loggedIn, setLoggedIn] = useState(false)
-    const { user } = useContext(UserContext)
+    const { isLoggedIn } = useContext(UserContext)
 
     useEffect(() => {
         fetchData()
@@ -34,14 +34,14 @@ const Navbar = () => {
             <div className="navbar-right">
                 <Navlink href={'#'} droppable={ genres } text="Categories" setShowDrop={setShowDrop} showDrop={showDrop} />
                 <Navlink href={'/manga'} text="Catalog" />
-                { user.email ? <Navlink href={'/user'} text="User" /> : <Navlink href={'/login'} text="Login" />}
+                { isLoggedIn ? <Navlink href={'/user'} text="User" /> : <Navlink href={'/login'} text="Login" />}
                 <NavCartButton />
             </div>
             <div className="mobile-cart">
                 <NavCartButton />
             </div>
             <div className="mobile-menu-container">
-                { user.email ? <Navlink href={'/user'} text="User" className="mobile-user-icon" /> : <Navlink href={'/login'} text="Login" />}
+                { isLoggedIn ? <Navlink href={'/user'} text="User" className="mobile-user-icon" /> : <Navlink href={'/login'} text="Login" />}
                 <HiMenu className="mobile-menu-icon" onClick={ () => setShowDrop(!showDrop) } />
             </div>
             {showDrop && <Categories setShowDrop={ setShowDrop } genres={ genres } />}

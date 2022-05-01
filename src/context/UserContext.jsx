@@ -1,13 +1,22 @@
 import { useState, createContext, useEffect } from 'react'
-import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from 'firebase/auth'
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged } from 'firebase/auth'
 import { auth } from '../services/firebase'
 
 export const UserContext = createContext({ email: null, username: null})
 
 export const UserContextProvider = ({ children }) => {
     const [user, setUser] = useState({})
+    const [isLoggedIn, setIsLoggedIn] = useState(false)
 
     useEffect(() => {
+        onAuthStateChanged(auth, user => {
+            if(user) {
+                setIsLoggedIn(true)
+            } else {
+                setIsLoggedIn(false)
+            }
+        })
+
         try {
             if(JSON.parse(localStorage.getItem('user'))) {
                 setUser(JSON.parse(localStorage.getItem('user')))
@@ -54,7 +63,8 @@ export const UserContextProvider = ({ children }) => {
             loginWithEmailAndPassword,
             registerWithEmailAndPassword,
             user,
-            logout
+            logout,
+            isLoggedIn
         }}
         >
             { children }

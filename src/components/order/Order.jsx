@@ -32,7 +32,7 @@ const Order = () => {
                         <p>Summary</p>
                         <ol>
                             <OrderSummary>
-                                { order.cart.map(item => <li> <strong>{ item.name } { item.info }</strong> (x{ item.quantity } units) ${ item.price }</li>) }
+                                { order.cart.map(item => <li key={ item.id }> <strong>{ item.name } { item.info }</strong> (x{ item.quantity } units) ${ item.price }</li>) }
                             </OrderSummary>
                         </ol>
                         <OrderTotal>Total: ${ order.total }</OrderTotal>

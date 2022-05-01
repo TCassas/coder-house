@@ -8,9 +8,9 @@ const Checkout = ({ items, total, onSubmit }) => {
     const [email, setEmail] = useState('')
     const [phone, setPhone] = useState('')
 
-    const { user } = useContext(UserContext)
+    const { user, isLoggedIn } = useContext(UserContext)
     useEffect(() => {
-        if(user.email) {
+        if(isLoggedIn) {
             setEmail(user.email)
         }
     }, [])
@@ -32,7 +32,7 @@ const Checkout = ({ items, total, onSubmit }) => {
                         <input type='email'
                             onChange={(e) => setEmail(e.target.value)}
                             value={ email }
-                            readOnly={true}
+                            readOnly={ isLoggedIn }
                         />
                     </div>
                     <div>
@@ -45,7 +45,7 @@ const Checkout = ({ items, total, onSubmit }) => {
                 <QuickSummary>
                     <strong>Summary</strong>
                     <div>
-                        {items.map(item => <p id={ item.id }>${ item.price } (x{ item.quantity }) { item.name }</p>)}
+                        {items.map(item => <p key={ item.id } id={ item.id }>${ item.price } (x{ item.quantity }) { item.name }</p>)}
                     </div>
                     <strong>Total <span>${ total }</span></strong>
                 </QuickSummary>

@@ -14,7 +14,7 @@ import User from '../User/User'
 
 const Routes = () => {
     const location = useLocation()
-    const { user } = useContext(UserContext)
+    const { isLoggedIn } = useContext(UserContext)
 
     return (
         <AnimatePresence>
@@ -28,10 +28,10 @@ const Routes = () => {
                 <Route path='/checkout' element={ <CheckoutContainer /> } />
 
                 {/* Auth dependent routes */}
-                <Route path='/login' element={ !user.email ? <Login /> : <Navigate to='/' /> } />
-                <Route path='/register' element={ !user.email ? <Register /> : <Navigate to='/' />} />
+                <Route path='/login' element={ !isLoggedIn ? <Login /> : <Navigate to='/' /> } />
+                <Route path='/register' element={ !isLoggedIn ? <Register /> : <Navigate to='/' />} />
                 {/* Auth only routes */}
-                <Route path='/user' element={ user.email ? <User /> : <Navigate to='/login' /> } />
+                <Route path='/user' element={ isLoggedIn ? <User /> : <Navigate to='/login' /> } />
             </ReactRoutes>
         </AnimatePresence>
     )

@@ -33,8 +33,8 @@ const OrderListItem = ({ order }) => {
                                 return (
                                     <tr item={ item.name }>
                                         <td><Link to={`/manga/${item.id}`}> { item.name } </Link></td>
-                                        <td>{ item.price }</td>
-                                        <td>{ item.quantity }</td>
+                                        <td>${ item.price }</td>
+                                        <td>x{ item.quantity }</td>
                                     </tr>
                                 )
                             })}
@@ -42,7 +42,7 @@ const OrderListItem = ({ order }) => {
                     </motion.table>
                 }
             </section>
-            <strong>$Total: { order.total }</strong>
+            <strong>Total: ${ order.total }</strong>
         </OrderItem>
     )
 }

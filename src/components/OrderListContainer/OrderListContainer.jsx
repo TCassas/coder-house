@@ -3,12 +3,12 @@ import OrderList from '../OrderList/OrderList'
 import { getOrdersByEmail } from '../../services/orders'
 import styled from 'styled-components'
 
-const OrderListContainer = ({ user }) => {
+const OrderListContainer = ({ user, isLoggedIn }) => {
     const [orders, setOrders] = useState([])
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        if(user.email) {
+        if(isLoggedIn) {
             fetchOrders()
         }
         

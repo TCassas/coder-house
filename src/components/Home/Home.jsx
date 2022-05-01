@@ -35,7 +35,7 @@ export default Home
 const HomeWrapper = styled.main`
     width: 100%;
     margin: 0 auto;
-    padding: 10px;
+    padding: 10px 0 10px 10px;
 `;
 
 const HighlightHeader = styled.div`
