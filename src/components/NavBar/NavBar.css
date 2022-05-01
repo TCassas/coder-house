@@ -25,6 +25,10 @@ nav {
     display: none;
 }
 
+.mobile-menu-container {
+    display: none;
+}
+
 .mobile-menu-icon {
     display: none;
     width: 100%;
@@ -43,12 +47,13 @@ nav {
 
 @media (max-width: 600px) {
     nav {
-        grid-template-columns: auto 50px 30px;
+        grid-template-columns: auto 50px 108px;
         grid-gap: 10px;
     }
 
     .mobile-menu-icon {
         display: flex;
+        width: auto;
     }
 
     .navbar-right {
@@ -57,7 +62,8 @@ nav {
 
     .mobile-menu-container {
         display: grid;
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 10px;
     }
     
     .mobile-cart {

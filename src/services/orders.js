@@ -1,4 +1,4 @@
-import { doc, getDoc } from 'firebase/firestore'
+import { collection, doc, getDoc, getDocs, orderBy, query, where } from 'firebase/firestore'
 import { firestoreDb } from './firebase'
 
 export const getOrderById = async (id) => {
@@ -9,4 +9,17 @@ export const getOrderById = async (id) => {
         ...docSnapshot.data(),
         date: docSnapshot.data().date.toDate()
     }
+}
+
+export const getOrdersByEmail = async (email) => {
+    const collectionRef = query(collection(firestoreDb, 'orders'), where('buyer.email', '==', email))
+    const querySnapshot = await getDocs(collectionRef)
+
+    return querySnapshot.docs.map(doc => {
+        return {
+            ...doc.data(),
+            id: doc.id,
+            date: doc.data().date.toDate()
+        }
+    })
 }

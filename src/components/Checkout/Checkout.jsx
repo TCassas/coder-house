@@ -1,11 +1,19 @@
 import styled from 'styled-components'
-import { useState } from 'react'
+import { useState, useContext, useEffect } from 'react'
 import { motion } from 'framer-motion'
+import { UserContext } from '../../context/UserContext'
 
 const Checkout = ({ items, total, onSubmit }) => {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [phone, setPhone] = useState('')
+
+    const { user } = useContext(UserContext)
+    useEffect(() => {
+        if(user.email) {
+            setEmail(user.email)
+        }
+    }, [])
 
     return (
         <motion.div initial={{ opacity: 0, x: 10 }} animate={{ opacity: 1, x: 0, transition: {duration: 0.3, delay: 0.8} }} exit={{ opacity: 0, x: -10 }} >
@@ -16,12 +24,15 @@ const Checkout = ({ items, total, onSubmit }) => {
                         <label>Name</label>
                         <input type='text'
                             onChange={(e) => setName(e.target.value)}
+                            value={ name }
                         />
                     </div>
                     <div>
                         <label>Email:</label>
                         <input type='email'
                             onChange={(e) => setEmail(e.target.value)}
+                            value={ email }
+                            readOnly={true}
                         />
                     </div>
                     <div>
