@@ -31,7 +31,7 @@ const OrderListItem = ({ order }) => {
                         <tbody>
                             { order.cart.map(item => {
                                 return (
-                                    <tr item={ item.name }>
+                                    <tr key={ item.id } item={ item.name }>
                                         <td><Link to={`/manga/${item.id}`}> { item.name } </Link></td>
                                         <td>${ item.price }</td>
                                         <td>x{ item.quantity }</td>
