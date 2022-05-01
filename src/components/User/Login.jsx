@@ -4,6 +4,8 @@ import styled from 'styled-components'
 import { UserContext } from '../../context/UserContext'
 import { Link } from 'react-router-dom'
 import NotificationContext from '../../context/NotificationContext'
+import Button from '../Standard/Button'
+import Input from '../Standard/Input'
 
 const Login = () => {
     const [email, setEmail] = useState('')
@@ -26,25 +28,11 @@ const Login = () => {
             <LoginContainer>
                 <LoginForm>
                     <h1>Login</h1>
-                    <div>
-                        <label>Email</label>
-                        <input type='mail'
-                            onChange={(e) => setEmail(e.target.value)}
-                        />
-                    </div>
-                    <div>
-                        <label>Password</label>
-                        <input type='password'
-                            onChange={(e) => setPassword(e.target.value)}
-                        />
-                    </div>
+                    <Input label='Email' type='mail' change={ setEmail } value={ email } />
+                    <Input label='Password' type='password' change={ setPassword } value={ password } />
                 </LoginForm>
                 <small>Don't have an account? <Link to={'/register'}>Register</Link></small>
-                <LoginButton
-                    onClick={() => onLogin()}
-                >
-                    Login
-                </LoginButton>
+                <Button color='success' text='Login' click={onLogin} />
             </LoginContainer>
         </motion.main>
     )
@@ -66,41 +54,15 @@ const LoginContainer = styled.section`
         grid-template-columns: 1fr;
         grid-template-rows: auto auto auto;
     }
+
+    small a {
+        color: #f03A17;
+        font-weight: bold;
+    }
 `
 
 const LoginForm = styled.form`
     display: flex;
     flex-direction: column;
     gap: 10px;
-
-    input {
-        width: 100%;
-        border: none;
-        padding: 5px;
-        border-top-left-radius: 6px;
-        border-bottom-left-radius: 6px;
-        caret-color: #F03A17;
-        border: 2px solid white;
-        transition: 0.1s;
-        font-size: 14px;
-        box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.25);
-        background-color: rgb(243, 246, 252);
-        border-radius: 2px;
-
-        &:focus {
-            outline: none;
-            border: 2px solid #F03A17;
-            border-radius: 2px;
-        }
-    }
 `
-
-const LoginButton = styled.button`
-    border: none;
-    color: white;
-    background-color: #009C5E;
-    padding: 5px 12px;
-    font-weight: bold;
-    font-size: 18px;
-    border-radius: 6px;
-`;

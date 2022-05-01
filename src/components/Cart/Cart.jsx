@@ -3,6 +3,7 @@ import CartItem from './CartItem'
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
+import Button from '../standar/Button'
 
 const Cart = ({ items, getTotal }) => {
     const [total, setTotal] = useState(0)
@@ -58,9 +59,7 @@ const Cart = ({ items, getTotal }) => {
                 </CartItemTable>
                 <CartActions>
                     <Link to={'/checkout'}>
-                        <BuyBotton>
-                            Proceed to checkout
-                        </BuyBotton>
+                        <Button color='success' text='Proceed to checkout' />
                     </Link>
                 </CartActions>
             </CartItemListWrapper>
@@ -105,14 +104,4 @@ const CartActions = styled.div`
     display: flex;
     justify-content: flex-end;
     width: 100%;
-`
-
-const BuyBotton = styled.button`
-    border: none;
-    color: white;
-    background-color: #009C5E;
-    padding: 5px 12px;
-    font-weight: bold;
-    font-size: 18px;
-    border-radius: 6px;
 `

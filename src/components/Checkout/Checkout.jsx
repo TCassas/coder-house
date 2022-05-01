@@ -2,6 +2,8 @@ import styled from 'styled-components'
 import { useState, useContext, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { UserContext } from '../../context/UserContext'
+import Button from '../Standard/Button'
+import Input from '../Standard/Input'
 
 const Checkout = ({ items, total, onSubmit }) => {
     const [name, setName] = useState('')
@@ -20,27 +22,9 @@ const Checkout = ({ items, total, onSubmit }) => {
             <CheckoutContainer>
                 <CheckoutForm>
                     <h1>Complete with your personal data</h1>
-                    <div>
-                        <label>Name</label>
-                        <input type='text'
-                            onChange={(e) => setName(e.target.value)}
-                            value={ name }
-                        />
-                    </div>
-                    <div>
-                        <label>Email:</label>
-                        <input type='email'
-                            onChange={(e) => setEmail(e.target.value)}
-                            value={ email }
-                            readOnly={ isLoggedIn }
-                        />
-                    </div>
-                    <div>
-                        <label>Phone number</label>
-                        <input type='phone'
-                            onChange={(e) => setPhone(e.target.value)}
-                        />
-                    </div>
+                    <Input label='Name' type='text' change={ setName } value= { name } />
+                    <Input label='Email' type='mail' change={ setEmail } value= { email } />
+                    <Input label='Phone' type='phoe' change={ setPhone } value= { phone } />
                 </CheckoutForm>
                 <QuickSummary>
                     <strong>Summary</strong>
@@ -49,11 +33,7 @@ const Checkout = ({ items, total, onSubmit }) => {
                     </div>
                     <strong>Total <span>${ total }</span></strong>
                 </QuickSummary>
-                <BuyBotton
-                    onClick={() => onSubmit({ name, email, phone })}
-                >
-                    Complete order
-                </BuyBotton>
+                <Button color='success' text='Complete order' click={() => onSubmit({name, email, phone})} />
             </CheckoutContainer>
         </motion.div>
     )
@@ -78,27 +58,6 @@ const CheckoutForm = styled.form`
     display: flex;
     flex-direction: column;
     gap: 10px;
-
-    input {
-        width: 100%;
-        border: none;
-        padding: 5px;
-        border-top-left-radius: 6px;
-        border-bottom-left-radius: 6px;
-        caret-color: #F03A17;
-        border: 2px solid white;
-        transition: 0.1s;
-        font-size: 14px;
-        box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.25);
-        background-color: rgb(243, 246, 252);
-        border-radius: 2px;
-
-        &:focus {
-            outline: none;
-            border: 2px solid #F03A17;
-            border-radius: 2px;
-        }
-    }
 `
 
 const QuickSummary = styled.div`
@@ -121,13 +80,3 @@ const QuickSummary = styled.div`
         }
     }
 `
-
-const BuyBotton = styled.button`
-    border: none;
-    color: white;
-    background-color: #009C5E;
-    padding: 5px 12px;
-    font-weight: bold;
-    font-size: 18px;
-    border-radius: 6px;
-`;

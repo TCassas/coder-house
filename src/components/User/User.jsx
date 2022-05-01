@@ -6,6 +6,7 @@ import OrderListContainer from '../OrderListContainer/OrderListContainer'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { getLikedItems } from '../../services/likes'
+import Button from '../standar/Button'
 
 const User = () => {
     const { user, logout, isLoggedIn } = useContext(UserContext)
@@ -16,9 +17,7 @@ const User = () => {
                 <UserHeader>
                     <h1> {user.email?.substring(0, user.email.indexOf('@'))}'s page </h1>
                     <Link to='/'>
-                        <LogoutButton
-                            onClick={() => logout()}
-                        >Logout</LogoutButton>
+                        <Button  color='warning' text='Logout' click={logout} />
                     </Link>
                 </UserHeader>
                 <ItemLIstContainerByFn fn={ getLikedItems } param={ user.uid } variant={2} title='My likes' fallback="You don't like anything..? 🗿" />
@@ -46,15 +45,4 @@ const UserHeader = styled.div`
     justify-content: space-between;
     align-items: center;
     width: 100%;
-`
-
-const LogoutButton = styled.button`
-    border: none;
-    color: white;
-    background-color: #E8A91A;
-    padding: 5px 12px;
-    font-weight: bold;
-    cursor: pointer;
-    font-size: 18px;
-    border-radius: 6px;
 `

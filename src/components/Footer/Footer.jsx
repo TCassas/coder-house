@@ -4,9 +4,8 @@ const Footer = () => {
     return (
         <footer>
             <p>
-                👺
-                <a href="https://github.com/TCassas/coder-house" alt="github repositorY" > @TCassas </a>
-                🚧
+                <a href="https://github.com/TCassas/coder-house" target='_blank' alt="github repository" > @TCassas </a>
+                👺💻
             </p>
         </footer>
     )
