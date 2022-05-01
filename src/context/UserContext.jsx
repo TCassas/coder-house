@@ -17,14 +17,6 @@ export const UserContextProvider = ({ children }) => {
                 setIsLoggedIn(false)
             }
         })
-
-        try {
-            if(JSON.parse(localStorage.getItem('user'))) {
-                setUser(JSON.parse(localStorage.getItem('user')))
-            }
-        } catch (error) {
-            console.log(error)
-        }
     }, [])
 
     const loginWithEmailAndPassword = async (email, password) => {

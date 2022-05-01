@@ -1,9 +1,19 @@
-import {  useState, createContext } from 'react'
+import {  useState, useEffect, createContext } from 'react'
 
 const CartContext = createContext()
 
 export const CartContextProvider = ({ children }) => {
     const [cart, setCart] = useState([])
+
+    useEffect(() => {
+        try {
+            if(JSON.parse(localStorage.getItem('cart')).length > 0) {
+                setCart(JSON.parse(localStorage.getItem('cart')))
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }, [])
 
     const addItem = (item, quantity) => {
         const itemToAdd = {
@@ -16,9 +26,13 @@ export const CartContextProvider = ({ children }) => {
             const newCart = cart
             newCart[indexOfItemIncart].quantity = (item.id === itemToAdd.id) && quantity
 
-            setCart([...cart])
+            setCart([...newCart])
+
+            updateCartLocalStorage(cart)
         } else {
             setCart([...cart, itemToAdd])
+
+            updateCartLocalStorage([...cart, itemToAdd])
         }
     }
 
@@ -26,6 +40,8 @@ export const CartContextProvider = ({ children }) => {
         if(isInCart(id)) {
             const cartWithoutItem = cart.filter(itemInCart => itemInCart.id !== id)
             setCart(cartWithoutItem)
+
+            updateCartLocalStorage(cartWithoutItem)
         }
     }
 
@@ -40,6 +56,8 @@ export const CartContextProvider = ({ children }) => {
 
     const clearCart = (item) => {
         setCart([])
+
+        updateCartLocalStorage([])
     }
 
     const getCartTotal = () => {
@@ -53,6 +71,15 @@ export const CartContextProvider = ({ children }) => {
         let count = 0
         cart.forEach(item => count += item.quantity)
         return count
+    }
+
+    const updateCartLocalStorage = (cart) => {
+        try {
+            localStorage.removeItem('cart')
+            localStorage.setItem('cart', JSON.stringify(cart))
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     return (
