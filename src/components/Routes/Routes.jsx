@@ -5,7 +5,7 @@ import ItemDetailContainer from '../ItemDetailContainer/ItemDetailContainer'
 import CartContainer from '../CartContainer/CartContainer'
 import ItemListContainer from '../ItemListContainer/ItemListContainer.jsx'
 import Home from '../Home/Home.jsx'
-import Order from '../order/Order.jsx'
+import Order from '../Order/Order.jsx'
 import CheckoutContainer from '../Checkout/CheckoutContainer';
 import Login from '../User/Login'
 import Register from '../User/Register'

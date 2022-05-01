@@ -65,6 +65,10 @@ const OrderItem = styled.article`
         border-bottom: 1px solid gainsboro;
     }
 
+    table tbody tr {
+        height: 28px;
+    }
+
     table td:nth-of-type(1) {
         font-weight: bold;
 
