@@ -63,5 +63,5 @@ const BrandHighlight = styled.div`
 `;
 
 const HighlightSet = styled.div`
-    
+    padding: 0 10px;
 `;

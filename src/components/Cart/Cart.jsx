@@ -29,7 +29,7 @@ const Cart = ({ items, getTotal }) => {
                     <picture>
                         <h1>Such an empty cart</h1>
                         <p>Go search through our <Link to='/manga'>catalog</Link> and add something to the cart!</p>
-                        <img src='imgs/empty-cart.png' />
+                        <img src='imgs/empty-cart.png' alt='Uzumaki pannel of protagonist walking alone in the street' />
                     </picture>
                 </EmptyCart>
             </AnimatedCart>

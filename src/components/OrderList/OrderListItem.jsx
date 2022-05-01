@@ -2,7 +2,6 @@ import styled from 'styled-components'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
-import { HiChevronDown, HiChevronUp } from 'react-icons/hi'
 
 const OrderListItem = ({ order }) => {
     const [showDetail, setShowDetail] = useState(false)

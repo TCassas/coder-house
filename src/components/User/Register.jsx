@@ -3,15 +3,22 @@ import { motion } from 'framer-motion'
 import styled from 'styled-components'
 import { UserContext } from '../../context/UserContext'
 import { Link } from 'react-router-dom'
+import NotificationContext from '../../context/NotificationContext'
 
 const Register = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-
     const { registerWithEmailAndPassword } = useContext(UserContext)
+    const { addNotification } = useContext(NotificationContext)
 
     const onRegister = async() => {
-        const userCredentials = await registerWithEmailAndPassword(email, password)
+        try {
+            await registerWithEmailAndPassword(email, password)
+
+            addNotification('Account created, Welcome!', 'success')
+        } catch (error) {
+            addNotification(error.code, 'warning')
+        }
     }
 
     return (
@@ -83,27 +90,6 @@ const LoginForm = styled.form`
             outline: none;
             border: 2px solid #F03A17;
             border-radius: 2px;
-        }
-    }
-`
-
-const QuickSummary = styled.div`
-    display: grid;
-    grid-template-rows: auto 1fr auto;
-    gap: 2px;
-    box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.25);
-    padding: 10px;
-
-    p {
-        padding-left: 8px;
-        color: rgb(156, 156, 156);
-    }
-
-    strong:nth-of-type(2) {
-        text-align: right;
-
-        span {
-            color: #F03A17;
         }
     }
 `

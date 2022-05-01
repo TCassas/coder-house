@@ -2,16 +2,29 @@ import styled from 'styled-components'
 import Book from '../Book/Book'
 import ItemCount from '../ItemCount/ItemCount'
 import { Link } from 'react-router-dom'
-import { HiOutlineHeart, HiArrowCircleRight, HiOutlineX } from 'react-icons/hi'
-import { useState, useContext } from 'react'
+import { HiOutlineHeart, HiArrowCircleRight, HiOutlineX, HiHeart } from 'react-icons/hi'
+import { useState, useContext, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import CartContext from '../../context/CartContext'
+import { addLike, alradyLiked } from '../../services/likes'
+import NotificationContext from '../../context/NotificationContext'
+import { UserContext } from '../../context/UserContext'
 
 const ItemDetail = ({ item })  => {
     const { id, author, img, info, name, price, stock, description, audience, genres, quantity } = item
     const { addItem, removeItem } = useContext(CartContext)
-    
+    const { user } =  useContext(UserContext)
+    const { addNotification } = useContext(NotificationContext)
     const [countInCart, setCountInCart] = useState(quantity)
+    const [like, setLike] = useState(false)
+    
+    useEffect(() => {
+        setLike(fetchLike())
+
+        async function fetchLike() {
+            setLike(await alradyLiked(user.uid, id))
+        }
+    }, [])
 
     const onAdd = (quantity) => {
         if(quantity > 0) {
@@ -23,6 +36,21 @@ const ItemDetail = ({ item })  => {
     const onRemove = () => {
         removeItem(id)
         setCountInCart(0)
+    }
+
+    const onLike = () => {
+        postLike()
+
+        async function postLike() {
+            if(user?.uid && id) {
+                const likeResponse = await addLike(user.uid, id)
+
+                addNotification(likeResponse.message, "success")
+                setLike(likeResponse.id)
+            } else {
+                addNotification("You need to be logged in to like something", "warning")
+            }
+        }
     }
 
     return (
@@ -40,8 +68,13 @@ const ItemDetail = ({ item })  => {
                 <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0, transition: {duration: 0.5} }} exit={{ opacity: 0, x: 20 }} >
                     <ItemDetailRight>
                         <h1>{ name }</h1>
-                        <ItemLike>
-                            <HiOutlineHeart />
+                        <ItemLike onClick={() => onLike()}>
+                            { like ?
+                                <HiHeart />
+                            :
+                                <HiOutlineHeart />
+                            }
+
                         </ItemLike>
                         <strong><span>Price</span>: ${ price }</strong>
                         <strong><span>Author</span>: { author }</strong>

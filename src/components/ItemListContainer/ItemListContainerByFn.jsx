@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import "./ItemListContainer.css"
 
-const ItemLIstContainerByProp = ({ fn, param, variant, title }) => {
+const ItemLIstContainerByProp = ({ fn, param, variant, title, fallback }) => {
     const [items, setItems] = useState([])
     const [loading, setLoading] = useState(true)
 
@@ -49,7 +49,7 @@ const ItemLIstContainerByProp = ({ fn, param, variant, title }) => {
                         </motion.div>
                     </>
                 :
-                    <h1>404 - Mangas not found</h1>
+                    <h1>{fallback ? fallback : '404 - Mangas not found'}</h1>
                 )
             }
         </ItemsContainer>

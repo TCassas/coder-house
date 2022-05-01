@@ -15,7 +15,7 @@ const OrderList = ({ orders }) => {
                 <EmptyOrders>
                     <p>Hmm... no orders?</p>
                     <picture>
-                        <img src='/imgs/no-orders.jfif' />
+                        <img src='/imgs/no-orders.jfif' alt="Girls' last tour pannel of the protagonists seing nothingness" />
                     </picture>
                 </EmptyOrders>
             }
@@ -40,6 +40,7 @@ const EmptyOrders = styled.div`
     p {
         text-align: right;
         font-size: 14px;
+        font-style: italic;
     }
 
     img {

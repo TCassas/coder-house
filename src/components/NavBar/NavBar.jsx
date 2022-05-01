@@ -12,7 +12,6 @@ import { UserContext } from "../../context/UserContext"
 const Navbar = () => {
     const [genres, setGenres] = useState([])
     const [showDrop, setShowDrop] = useState(false)
-    const [loggedIn, setLoggedIn] = useState(false)
     const { isLoggedIn } = useContext(UserContext)
 
     useEffect(() => {
