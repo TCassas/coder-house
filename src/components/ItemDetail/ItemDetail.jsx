@@ -20,7 +20,7 @@ const ItemDetail = ({ item })  => {
     const [outOfStock, setOutOfStock] = useState(false)
     
     useEffect(() => {
-        setLike(fetchLike())
+        (user.uid && id) && setLike(fetchLike())
 
         async function fetchLike() {
             setLike(await alradyLiked(user.uid, id))
