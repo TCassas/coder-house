@@ -3,12 +3,12 @@ import { getFirestore } from 'firebase/firestore'
 import { getAuth } from 'firebase/auth'
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAMBObXPoDzb0UPeiEi_eiYQMOUdu6BUgA",
-  authDomain: "fir-tengu.firebaseapp.com",
-  projectId: "fir-tengu",
-  storageBucket: "fir-tengu.appspot.com",
-  messagingSenderId: "1014353585483",
-  appId: "1:1014353585483:web:584e64674f4a0168aaf4ce"
+  apiKey: process.env.REACT_APP_apiKey,
+  authDomain: process.env.REACT_APP_authDomain,
+  projectId: process.env.REACT_APP_projectId,
+  storageBucket: process.env.REACT_APP_storageBucket,
+  messagingSenderId: process.env.REACT_APP_messagingSenderId,
+  appId: process.env.REACT_APP_appId
 }
 
 //App connection function

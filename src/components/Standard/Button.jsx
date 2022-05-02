@@ -22,8 +22,8 @@ const Button = ({ color, text, click }) => {
 
     return (
         <StyledButton
-            buttonColor={buttonColor}
-            onClick={() => click()}
+            buttonColor={ buttonColor }
+            onClick={() => click && click()}
         >{text}</StyledButton>
     )
 }

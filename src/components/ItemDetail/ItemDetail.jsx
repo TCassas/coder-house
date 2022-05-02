@@ -12,11 +12,12 @@ import { UserContext } from '../../context/UserContext'
 
 const ItemDetail = ({ item })  => {
     const { id, author, img, info, name, price, stock, description, audience, genres, quantity } = item
-    const { addItem, removeItem } = useContext(CartContext)
+    const { addItem, removeItem, isInCart } = useContext(CartContext)
     const { user } =  useContext(UserContext)
     const { addNotification } = useContext(NotificationContext)
     const [countInCart, setCountInCart] = useState(quantity)
     const [like, setLike] = useState(false)
+    const [outOfStock, setOutOfStock] = useState(false)
     
     useEffect(() => {
         setLike(fetchLike())
@@ -24,6 +25,8 @@ const ItemDetail = ({ item })  => {
         async function fetchLike() {
             setLike(await alradyLiked(user.uid, id))
         }
+
+        if(isInCart(id).index < 0 && stock == 0) setOutOfStock(true)
     }, [])
 
     const onAdd = (quantity) => {
@@ -92,20 +95,24 @@ const ItemDetail = ({ item })  => {
                                 </Link>
                             )}
                         </ItemGenres>
-                        <ItemControls both={ countInCart > 0 }>
-                            <ItemCount stock={ stock } initial={ countInCart } onAdd={ onAdd } alreadyInCart={ countInCart > 0 } />
-                            { countInCart > 0 &&
-                                <GoToCart>
-                                    <Link to={'/cart'}>Go to cart <HiArrowCircleRight /></Link>
-                                    <RemoveFromCart
-                                        onClick={() => onRemove()}
-                                    >
-                                        <span>Remove from cart</span>
-                                        <HiOutlineX />
-                                    </RemoveFromCart>
-                                </GoToCart>
-                            }
-                        </ItemControls>
+                        { !outOfStock ?
+                            <ItemControls both={ countInCart > 0 }>
+                                <ItemCount stock={ stock } initial={ countInCart } onAdd={ onAdd } alreadyInCart={ countInCart > 0 } />
+                                { countInCart > 0 &&
+                                    <GoToCart>
+                                        <Link to={'/cart'}>Go to cart <HiArrowCircleRight /></Link>
+                                        <RemoveFromCart
+                                            onClick={() => onRemove()}
+                                        >
+                                            <span>Remove from cart</span>
+                                            <HiOutlineX />
+                                        </RemoveFromCart>
+                                    </GoToCart>
+                                }
+                            </ItemControls>
+                        :
+                            <OutOfStock>Out of stock :(</OutOfStock>
+                        }
                     </ItemDetailRight>
                 </motion.div>
             </ItemDetailContainer>
@@ -241,4 +248,8 @@ const RemoveFromCart = styled.button`
     padding: 0 10px;
     font-size: 20px;
     cursor: pointer;
-`;
+`
+
+const OutOfStock = styled.p`
+    margin: 10px auto;
+`
