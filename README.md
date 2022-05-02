@@ -2,7 +2,6 @@
 Final project for the React course ran by CoderHouse 💻
 
 ## Idea
-___
 Manga e-commerce with auth, cart persistance, stock control, responsive design, dynamic/conditional, forms, simple animations and some other things 🐊
 
 I choose "Tengu Store" as the name of my e-commerce, and mangas as the main products of the  page because of my passion for japanese culture.
@@ -10,7 +9,6 @@ I choose "Tengu Store" as the name of my e-commerce, and mangas as the main prod
 **What is a [tengu](https://en.wikipedia.org/wiki/Tengu)?**
 
 ## Setup
-___
 Execute the following commands in your terminal
 ```
 git clone https://github.com/TCassas/coder-house.git
@@ -26,7 +24,6 @@ This will boot up the react application on port 3000.
 - The img property in the products collection correlates to a file inside the folder /public/imgs/
 
 ## Firebase collection structures
-___
 ### Product:
 - author: string
 - description: string
@@ -50,7 +47,6 @@ ___
 ### Genres:
 - name: string
 ## Dependencies
-___
 This project uses the following dependencies
 - Data storage & Auth: [firebase](https://github.com/firebase/firebase-js-sdk)
 - Styling: [styled-components](https://github.com/styled-components/styled-components)
@@ -59,7 +55,8 @@ This project uses the following dependencies
 - Iconography: [react-icons](https://github.com/react-icons/react-icons)
 - Manga 3D Model: [threejs](https://github.com/mrdoob/three.js)
 ## Navigation examples
-___
+Don't mind the "Activate windows" message pls 💧
+
 Home component
 ![Showing home component](/public/imgs/navigation/home.gif)
 
